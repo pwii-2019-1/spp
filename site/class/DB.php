@@ -1,6 +1,7 @@
 <?php
 
 class DB {
+
     public static function getConnection() {
         $dsn = 'mysql:host=localhost;dbname=mydb';
         $user = 'root';
@@ -9,7 +10,8 @@ class DB {
             $pdo = new PDO($dsn, $user, $pass);
             return $pdo;
         } catch (PDOException $exc) {
-            echo 'Erro:' . $exc->getMessage();
+            echo 'Erro:' . $exc->getMessage() . ' Código:' . $exc->getCode();
         }
     }
+
 }
