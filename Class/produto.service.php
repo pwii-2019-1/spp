@@ -1,5 +1,5 @@
 <?php
-include_once './produto.controller.php';
+
 include_once './produto.model.php';
 include_once './conexao.php';
 
@@ -8,23 +8,23 @@ class ProdutoService {
     private $conexao;
     private $produto;
 
-    public function __construct(Conexao $conexao, Produto $aluno) {
+    public function __construct(Conexao $conexao, Produto $produto) {
         $this->conexao = $conexao->conectar();
-        $this->produto = $aluno;
+        $this->produto = $produto;
     }
 
-    public static function salvarProduto() {
+    public function salvarProduto() {
         $sql = "INSERT INTO produto (cor,datacadastro,descricao,genero,marca,numeracao,saldoProduto,valorUnitario)"
                 . " VALUES (:cor, NOW(), :desc, :gen,  :marca, :num, :saldo, :valor)";
 
         $sttm = $this->conexao->prepare($sql);
         $sttm->bindValue(':cor', $this->produto->__get('cor'));
-        $sttm->bindValue(':desc', $this->produto->__get('desc'));
-        $sttm->bindValue(':gen', $this->produto->__get('gen'));
+        $sttm->bindValue(':desc', $this->produto->__get('descricao'));
+        $sttm->bindValue(':gen', $this->produto->__get('genero'));
         $sttm->bindValue(':marca', $this->produto->__get('marca'));
-        $sttm->bindValue(':num', $this->produto->__get('num'));
-        $sttm->bindValue(':saldo', $this->produto->__get('saldo'));
-        $sttm->bindValue(':valor', $this->produto->__get('valor'));
+        $sttm->bindValue(':num', $this->produto->__get('numeracao'));
+        $sttm->bindValue(':saldo', $this->produto->__get('saldoProduto'));
+        $sttm->bindValue(':valor', $this->produto->__get('valorUnitario'));
 
         try {
             $sttm->execute();
@@ -34,9 +34,20 @@ class ProdutoService {
     }
 
 }
+
 ?>
 <?php
+
+
+$p = new Produto();
+$p->__set('descricao', "ECKO 2019");
+$p->__set('numeracao', 42);
+$p->__set('genero', 'F');
+$p->__set('cor', "Amarelo");
+$p->__set('marca', "ECKO");
+$p->__set('saldoProduto', 18);
+$p->__set('valorUnitario', 450);
+
 $pdo = new Conexao();
-$p = new Produto("Tenis Zoom", 34, "M", "branco", "nike", 500, 9);
 $ps = new ProdutoService($pdo, $p);
 $ps->salvarProduto();

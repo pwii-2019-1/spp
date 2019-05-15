@@ -18,7 +18,4 @@ class Produto {
     public function __get($atrib) {
         return $this->$atrib;
     }
-
 }
-
-
