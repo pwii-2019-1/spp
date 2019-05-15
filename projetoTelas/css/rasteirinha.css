@@ -1,6 +1,6 @@
 body {
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: 80px;
+  padding-bottom: 80px;
   background-color: #eee;
 }
 
@@ -25,6 +25,6 @@ h11 {
   text-align: center;
 }
 
-.help-block { /*Para deixar o campo obrigatório do lado direito da página*/
+.help-block {
   text-align: right;
 }
