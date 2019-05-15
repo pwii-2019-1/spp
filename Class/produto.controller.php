@@ -13,9 +13,9 @@ if ($acao == 'inserir') {
     $produto->__set('marca', filter_input(INPUT_POST, 'marca'));
     $produto->__set('valorUnitario', filter_input(INPUT_POST, 'valorUnitario'));
     $produto->__set('saldoProduto', filter_input(INPUT_POST, 'saldoProduto'));
+
     $conexao = new Conexao();
-    echo $produto->genero;
     $produtoService = new ProdutoService($conexao, $produto);
     $produtoService->salvarProduto();
-    //header('Location: novo_prod.php?sucesso=1');
+    header('Location: ./../projetoTelas/cadastroProduto.html');
 }
