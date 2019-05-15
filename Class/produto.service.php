@@ -35,19 +35,3 @@ class ProdutoService {
 
 }
 
-?>
-<?php
-
-
-$p = new Produto();
-$p->__set('descricao', "ECKO 2019");
-$p->__set('numeracao', 42);
-$p->__set('genero', 'F');
-$p->__set('cor', "Amarelo");
-$p->__set('marca', "ECKO");
-$p->__set('saldoProduto', 18);
-$p->__set('valorUnitario', 450);
-
-$pdo = new Conexao();
-$ps = new ProdutoService($pdo, $p);
-$ps->salvarProduto();

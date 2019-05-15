@@ -1,22 +1,21 @@
 <?php
+
 require 'produto.service.php';
-require 'conexao.php';
 
-$acao = isset($_GET['acao']) ? $_GET['acao'] : $acao;
-
+$acao = filter_input(INPUT_GET, 'acao') ? filter_input(INPUT_GET, 'acao') : $acao;
 if ($acao == 'inserir') {
+    
     $produto = new Produto();
-    $produto->__set('descricao', $_POST['descricao']);
-    $produto->__set('numeracao', $_POST['numeracao']);
-    $produto->__set('genero', $_POST['genero']);
-    $produto->__set('cor', $_POST['cor']);
-    $produto->__set('marca', $_POST['marca']);
-    $produto->__set('valorUnitario', $_POST['valorUnitario']);
-    $produto->__set('descricao', $_POST['saldoProduto']);
+    $produto->__set('descricao', filter_input(INPUT_POST, 'descricao'));
+    $produto->__set('numeracao', filter_input(INPUT_POST, 'numeracao'));
+    $produto->__set('genero', filter_input(INPUT_POST, 'genero'));
+    $produto->__set('cor', filter_input(INPUT_POST, 'cor'));
+    $produto->__set('marca', filter_input(INPUT_POST, 'marca'));
+    $produto->__set('valorUnitario', filter_input(INPUT_POST, 'valorUnitario'));
+    $produto->__set('saldoProduto', filter_input(INPUT_POST, 'saldoProduto'));
 
     $conexao = new Conexao();
     $produtoService = new ProdutoService($conexao, $produto);
     $produtoService->salvarProduto();
-
-    //header('Location: novo_prod.php?sucesso=1');
+    header('Location: ./../projetoTelas/cadastroProduto.html');
 }
