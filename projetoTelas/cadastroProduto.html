@@ -10,7 +10,7 @@
     <body background="img/sapatos2.jpg">
         <div class="container">
 
-            <form class="form-horizontal" action="../Class/produto.controller.php?acao=inserir">
+            <form class="form-horizontal" action="../Class/produto.controller.php?acao=inserir" method="post">
                 <fieldset>
                     <div class="panel panel-primary">
                         </br>
@@ -36,24 +36,24 @@
                                     <label for="numeracao">Numeração <h11>*</h11></label>
                                     <select id="numeracao" name="numeracao" class="form-control" required="" type="number">
                                         <option selected>Escolher...</option>
-                                        <option value="1">27</option>
-                                        <option value="2">28</option>
-                                        <option value="3">29</option>
-                                        <option value="1">30</option>
-                                        <option value="2">31</option>
-                                        <option value="3">32</option>
-                                        <option value="1">33</option>
-                                        <option value="2">34</option>
-                                        <option value="3">35</option>
-                                        <option value="1">36</option>
-                                        <option value="2">37</option>
-                                        <option value="3">38</option>
-                                        <option value="1">39</option>
-                                        <option value="2">40</option>
-                                        <option value="3">41</option>
-                                        <option value="1">42</option>
-                                        <option value="2">43</option>
-                                        <option value="3">44</option>
+                                        <option value="27">27</option>
+                                        <option value="28">28</option>
+                                        <option value="29">29</option>
+                                        <option value="30">30</option>
+                                        <option value="31">31</option>
+                                        <option value="32">32</option>
+                                        <option value="33">33</option>
+                                        <option value="34">34</option>
+                                        <option value="35">35</option>
+                                        <option value="36">36</option>
+                                        <option value="37">37</option>
+                                        <option value="38">38</option>
+                                        <option value="39">39</option>
+                                        <option value="40">40</option>
+                                        <option value="41">41</option>
+                                        <option value="42">42</option>
+                                        <option value="43">43</option>
+                                        <option value="44">44</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-4">
@@ -89,11 +89,11 @@
                                     <label for="radios">Gênero </label>
                                     </br>
                                     <label class="radio-inline" for="radios-0" >
-                                        <input name="genero" id="sexo" value="feminino" type="radio">
+                                        <input name="genero" id="sexo" value="F" type="radio">
                                         Feminino
                                     </label>
                                     <label class="radio-inline" for="radios-1">
-                                        <input name="genero" id="sexo" value="masculino" type="radio">
+                                        <input name="genero" id="sexo" value="M" type="radio">
                                         Masculino
                                     </label>
                                 </div>
@@ -132,11 +132,11 @@
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label for="valorunit">Valor unitário <h11>*</h11></label>
-                                    <input id="valorunit" name="valorunit" class="form-control" required="" placeholder="R$ " type="text" maxlength="15" OnKeyPress="formatar('## ###,###,##', this)">
+                                    <input id="valorunit" name="valorUnitario" class="form-control" required="" placeholder="R$ " type="text" maxlength="15" OnKeyPress="formatar('## ###,###,##', this)">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="saldoprod">Saldo do produto</label>
-                                    <input id="saldoprod" name="saldoprod" class="form-control" type="text">
+                                    <input id="saldoprod" name="saldoProduto" class="form-control" type="text">
                                 </div>
                             </div>
                             </br>
@@ -151,8 +151,16 @@
                             </fieldset>
                             </form>
                         </div>
+
+                        <!-- mostrar tabela -->
+
+                        <div class="tabelaProdutos">
+
+                        </div>
+
+
                         <script src="js/bootstrap.min.js"></script>
                         <script rel="stylesheet" src="js/estilo-produto.js"></script>
                         </body>
                         </html>
-                      
+
