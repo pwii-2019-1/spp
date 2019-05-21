@@ -1,13 +1,13 @@
 <?php
   class ItemVenda{
-    private $codVenda;
+    private $venda;
     private $qtdProduto;
     private $descontoItem;
     private $valorTotalItem;
     private $produto;
 
-      public function __construct($codVenda, $qtdProduto, $descontoItem, $valorTotalItem, $produto){
-        $this-> codVenda = $codVenda;
+      public function __construct($venda, $qtdProduto, $descontoItem, $valorTotalItem, $produto){
+        $this-> Venda = $venda;
         $this-> qtdProduto = $qtdProduto;
         $this-> descontoItem = $descontoItem;
         $this-> valorTotalItem = $valorTotalItem;

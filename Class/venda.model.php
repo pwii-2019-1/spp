@@ -7,6 +7,7 @@ class Venda{
     private $descontoTotal;
     private $valorTotal;
     private $condicaoPgto;
+   
         
     public function __construct($cliente, $colaborador, $descontoTotal, $valorTotal, $condicaoPgto){
         $this-> cliente = $cliente;
