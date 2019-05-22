@@ -33,5 +33,27 @@ class ProdutoService {
         }
     }
 
+    public function getProdutoByID($id) {
+        $sql = "SELECT * FROM produto WHERE idproduto = :id";
+        $sttm = $this->conexao->prepare($sql);
+        $sttm->bindValue(':id', $id);
+
+        try {
+            $sttm->execute();
+        } catch (PDOException $exc) {
+            echo $exc->getTraceAsString();
+        }
+
+        $resul = $sttm->fetchAll(PDO::FETCH_ASSOC);
+        echo $resul['descricao'];
+        print_r($resul);
+//        $produto = new Produto();
+//        $produto->__set('codigo', )
+    }
+
 }
 
+$conn = new Conexao();
+$p = new Produto();
+$ps = new ProdutoService($conn, $p);
+echo $ps->getProdutoByID(5);

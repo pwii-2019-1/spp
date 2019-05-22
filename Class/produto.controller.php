@@ -3,6 +3,7 @@
 require 'produto.service.php';
 
 $acao = filter_input(INPUT_GET, 'acao') ? filter_input(INPUT_GET, 'acao') : $acao;
+echo $acao;
 if ($acao == 'inserir') {
     
     $produto = new Produto();
@@ -17,5 +18,5 @@ if ($acao == 'inserir') {
     $conexao = new Conexao();
     $produtoService = new ProdutoService($conexao, $produto);
     $produtoService->salvarProduto();
-    header('Location: ./../projetoTelas/cadastroProduto.html');
+   // header('Location: ./../projetoTelas/cadastroProduto.html');
 }
