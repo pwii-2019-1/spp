@@ -34,7 +34,6 @@ echo "<pre>";
 print_r($teste);
 
 //formas de acesso 
-echo $teste->dataUltimaCompra;
 echo $teste->__get('nome');
 
 echo "</pre>";
