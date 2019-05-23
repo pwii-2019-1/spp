@@ -4,7 +4,7 @@
         private $host = 'localhost';
         private $dbname = 'mydb';
         private $user = 'root';
-        private $password = '1q2w3e';
+        private $password = '';
 
         public function conectar() {
             try {
