@@ -4,11 +4,11 @@ include_once 'pessoa.model.php';
 
 class Cliente extends Pessoa {
 
-    private $dataUltimaCompra;
+    private $dataUltimaCompra = null;
 
     public function __construct($nome, $cpf, $rg, $sexo, $dataNascimento, $tel, $email, $logradouro, $bairro, $cidade, $estado, $cep, $dataUltimaCompra) {
         parent::__construct($nome, $cpf, $rg, $sexo, $dataNascimento, $tel, $email, $logradouro, $bairro, $cidade, $estado, $cep);
-        $this->__set('dataUltimaCompra', $dataUltimaCompra);
+
         $this->__set('nome', $nome);
         $this->__set('cpf', $cpf);
         $this->__set('rg', $rg);
@@ -21,15 +21,7 @@ class Cliente extends Pessoa {
         $this->__set('cidade', $cidade);
         $this->__set('estado', $estado);
         $this->__set('cep', $cep);
-    }
-
-    // Get e Set OverLoading
-    public function __get($atributo) {
-        return $this->$atributo;
-    }
-
-    public function __set($atributo, $valor) {
-        $this->$atributo = $valor;
+        $this->__set('dataUltimaCompra', $this->dataUltimaCompra = $dataUltimaCompra);
     }
 
 }
@@ -42,7 +34,7 @@ echo "<pre>";
 print_r($teste);
 
 //formas de acesso 
-echo $teste->nome; 
+echo $teste->dataUltimaCompra;
 echo $teste->__get('nome');
 
 echo "</pre>";

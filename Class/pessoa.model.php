@@ -2,32 +2,32 @@
 
 class Pessoa {
 
-    private $nome;
-    private $cpf;
-    private $rg;
-    private $sexo;
-    private $dataNascimento;
-    private $tel;
-    private $email;
-    private $logradouro;
-    private $bairro;
-    private $cidade;
-    private $estado;
-    private $cep;
+    private $nome = null;
+    private $cpf = null;
+    private $rg = null;
+    private $sexo = null;
+    private $dataNascimento = null;
+    private $tel = null;
+    private $email = null;
+    private $logradouro = null;
+    private $bairro = null;
+    private $cidade = null;
+    private $estado = null;
+    private $cep = null;
 
     function __construct($nome, $cpf, $rg, $sexo, $dataNascimento, $tel, $email, $logradouro, $bairro, $cidade, $estado, $cep) {
-        $this->nome = $nome;
-        $this->cpf = $cpf;
-        $this->rg = $rg;
-        $this->sexo = $sexo;
-        $this->dataNascimento= $dataNascimento;
-        $this->tel= $tel;
-        $this->email = $email;
-        $this->logradouro= $logradouro;
-        $this->bairro= $bairro;
-        $this->cidade = $cidade;
-        $this->estado= $estado;
-        $this->cep = $cep;
+        $this->__set('nome', $nome);
+        $this->__set('cpf', $cpf);
+        $this->__set('rg', $rg);
+        $this->__set('sexo', $sexo);
+        $this->__set('dataNascimento', $dataNascimento);
+        $this->__set('tel', $tel);
+        $this->__set('email', $email);
+        $this->__set('logradouro', $logradouro);
+        $this->__set('bairro', $bairro);
+        $this->__set('cidade', $cidade);
+        $this->__set('estado', $estado);
+        $this->__set('cep', $cep);
     }
 
     public function __get($atributo) {
