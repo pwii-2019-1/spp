@@ -1,7 +1,7 @@
 <?php
 
 class Produto {
-    private $codigo;
+    private $codProd;
     private $descricao;
     private $numeracao;
     private $genero;

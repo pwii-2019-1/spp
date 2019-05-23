@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-     <head>
+    <head>
         <meta charset="utf-8">
         <title>Cadastro de Produto</title>
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/estilo-produto.css">
     </head>
     <body background="img/sapatos2.jpg">
+
         <div class="container">
 
             <form class="form-horizontal" action="../Class/produto.controller.php?acao=inserir" method="post" >
@@ -152,9 +153,10 @@
                         </div>
 
                         <!-- mostrar tabela -->
-
                         <div class="tabelaProdutos">
+
                             <table class="table table-dark">
+
                                 <thead>
                                     <tr>
                                         <th scope="col">Código</th>
@@ -170,21 +172,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-
+                                    <?php
+                                    header('Location: ../Class/produto.controller.php?acao=popularTabela');
+                                    ?>
                                 </tbody>
                             </table>
                         </div>
-
-
                         <script src="js/bootstrap.min.js"></script>
                         <script src="js/estilo-produto.js"></script>
-        </body>
-    </html>
+
+                        </body>
+                        </html>
 
 

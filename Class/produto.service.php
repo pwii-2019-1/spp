@@ -45,28 +45,52 @@ class ProdutoService {
         }
 
         $resul = $sttm->fetchAll(PDO::FETCH_ASSOC);
-        echo $resul['descricao'];
-        if ($resul) {
-            echo "ok";
-        }
+
         $produto = new Produto();
-//        $produto->__set('codigo', )
+        $produto->__set('codigo', $resul[0]['idproduto']);
+        $produto->__set('descricao', $resul[0]['descricao']);
+        $produto->__set('numeracao', $resul[0]['numeracao']);
+        $produto->__set('genero', $resul[0]['genero']);
+        $produto->__set('cor', $resul[0]['cor']);
+        $produto->__set('marca', $resul[0]['marca']);
+        $produto->__set('valorUnitario', $resul[0]['valorUnitario']);
+        $produto->__set('saldoProduto', $resul[0]['saldoProduto']);
+        $produto->__set('datacadastro', $resul[0]['datacadastro']);
+
+        return $produto;
+    }
+
+    public function getProdutos() {
+        $sql = "SELECT * FROM produto";
+        $sttm = $this->conexao->prepare($sql);
+
+        try {
+            $sttm->execute();
+        } catch (PDOException $exc) {
+            echo $exc->getTraceAsString();
+        }
+        //return $linha = $sttm->fetch(PDO::FETCH_OBJ);
+       // $dados = $conex->query('SELECT nome, email FROM cadastros');
+        while ($linha = $sttm->fetch(PDO::FETCH_OBJ)) {
+             echo "<tr><th scope=\"row\">"
+                                        . $linha->idproduto . "</th> <td>" . $linha->descricao . "</td>
+                                    <td>" . $linha->numeracao . "</td>
+                                    <td>" . $linha->genero . "</td>
+                                    <td>" . $linha->cor . "</td>
+                                    <td>" . $linha->marca . "</td>
+                                    <td>" . $linha->valorUnitario . "</td>
+                                    <td>" . $linha->saldoProduto . "</td>
+                                    <td>" . $linha->dataCadastro . "</td>
+                                  </tr>";
+        }
     }
 
 }
 
+?>
+<?php
+
 $conn = new Conexao();
 $p = new Produto();
-$p->__set('cor', "Azul");
-$p->__set('descricao', "Tenis nikeeee");
-$p->__set('marca', "Nike");
-$p->__set('genero', "M");
-$p->__set('numeracao', 42);
-$p->__set('saldoProduto', 88);
-$p->__set('valorUnitario', 400);
-
-
-
 $ps = new ProdutoService($conn, $p);
-//$ps->salvarProduto();
-echo $ps->getProdutoByID(1);
+//$ps->getProdutos();

@@ -24,6 +24,7 @@ class Cliente extends Pessoa {
         $this->__set('dataUltimaCompra', $this->dataUltimaCompra = $dataUltimaCompra);
     }
 
+
 }
 
 $teste = new Cliente("Joao", "0000000000", "0123", 'M', "19/08/1987", "123456", "Neto@neto", "Rua BBC", "Jd Ana edith", "Jaragua", "GO", "444444", "12/12/12");
