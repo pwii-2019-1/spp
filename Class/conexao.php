@@ -4,7 +4,7 @@
         private $host = 'localhost';
         private $dbname = 'mydb';
         private $user = 'root';
-        private $password = '';
+        private $password = '1q2w3e';
 
         public function conectar() {
             try {
@@ -16,7 +16,7 @@
 
                 return $conexao;
             } catch (PDOException $e) {
-                echo "Erro: ".$e->getMessage();
+                echo "Erro: ".$e->getMessage()." Código: ".$e->getCode();
             }
         }
     }

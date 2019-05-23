@@ -46,8 +46,10 @@ class ProdutoService {
 
         $resul = $sttm->fetchAll(PDO::FETCH_ASSOC);
         echo $resul['descricao'];
-        print_r($resul);
-//        $produto = new Produto();
+        if ($resul) {
+            echo "ok";
+        }
+        $produto = new Produto();
 //        $produto->__set('codigo', )
     }
 
@@ -55,5 +57,16 @@ class ProdutoService {
 
 $conn = new Conexao();
 $p = new Produto();
+$p->__set('cor', "Azul");
+$p->__set('descricao', "Tenis nikeeee");
+$p->__set('marca', "Nike");
+$p->__set('genero', "M");
+$p->__set('numeracao', 42);
+$p->__set('saldoProduto', 88);
+$p->__set('valorUnitario', 400);
+
+
+
 $ps = new ProdutoService($conn, $p);
-echo $ps->getProdutoByID(5);
+//$ps->salvarProduto();
+echo $ps->getProdutoByID(1);
