@@ -10,6 +10,8 @@ class Produto {
     private $valorUnitario;
     private $saldoProduto;
     private $dataCadastro;
+    
+    
     //metodos get e sets
     public function __set($atrib, $value) {
         $this->$atrib = $value;

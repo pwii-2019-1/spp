@@ -1,19 +1,17 @@
 <?php
 
-include_once './produto.model.php';
-include_once './conexao.php';
+include_once 'produto.model.php';
+include_once 'conexao.php';
 
 class ProdutoService {
 
-    private $conexao;
-    private $produto;
+    private $conexao;  
 
-    public function __construct(Conexao $conexao, Produto $produto) {
-        $this->conexao = $conexao->conectar();
-        $this->produto = $produto;
+    public function __construct(){
+        $this->conexao = Conexao::conectar();
     }
 
-    public function salvarProduto() {
+    public function inserirProduto() {
         $sql = "INSERT INTO produto (cor,datacadastro,descricao,genero,marca,numeracao,saldoProduto,valorUnitario)"
                 . " VALUES (:cor, NOW(), :desc, :gen,  :marca, :num, :saldo, :valor)";
 
@@ -35,6 +33,7 @@ class ProdutoService {
 
     public function getProdutoByID($id) {
         $sql = "SELECT * FROM produto WHERE idproduto = :id";
+        
         $sttm = $this->conexao->prepare($sql);
         $sttm->bindValue(':id', $id);
 
@@ -47,7 +46,7 @@ class ProdutoService {
         $resul = $sttm->fetchAll(PDO::FETCH_ASSOC);
 
         $produto = new Produto();
-        $produto->__set('codigo', $resul[0]['idproduto']);
+        $produto->__set('codProd', $resul[0]['idproduto']);
         $produto->__set('descricao', $resul[0]['descricao']);
         $produto->__set('numeracao', $resul[0]['numeracao']);
         $produto->__set('genero', $resul[0]['genero']);
@@ -87,10 +86,19 @@ class ProdutoService {
 
 }
 
+// $conn = new Conexao();
+// $p = new Produto();
+// $ps = new ProdutoService();
+
+// $ps->getProdutoByID(1);
+
+
+// echo "<pre>";
+// print_r($ps->getProdutoByID(1));
+// echo "</pre>";
+
+
+
 ?>
 <?php
 
-$conn = new Conexao();
-$p = new Produto();
-$ps = new ProdutoService($conn, $p);
-//$ps->getProdutos();

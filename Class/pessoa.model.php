@@ -1,7 +1,8 @@
 <?php
 
 class Pessoa {
-
+    
+    private $codigo;        //Utilizado no Venda.Service para poder gravar no banco venda. (Welliton e Andreia)
     private $nome = null;
     private $cpf = null;
     private $rg = null;
@@ -16,6 +17,7 @@ class Pessoa {
     private $cep = null;
 
     function __construct($nome, $cpf, $rg, $sexo, $dataNascimento, $tel, $email, $logradouro, $bairro, $cidade, $estado, $cep) {
+       
         $this->__set('nome', $nome);
         $this->__set('cpf', $cpf);
         $this->__set('rg', $rg);
@@ -39,3 +41,4 @@ class Pessoa {
     }
 
 }
+?>
