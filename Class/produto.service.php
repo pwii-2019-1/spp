@@ -11,18 +11,18 @@ class ProdutoService {
         $this->conexao = Conexao::conectar();
     }
 
-    public function inserirProduto() {
+    public function inserirProduto($produto) {
         $sql = "INSERT INTO produto (cor,datacadastro,descricao,genero,marca,numeracao,saldoProduto,valorUnitario)"
                 . " VALUES (:cor, NOW(), :desc, :gen,  :marca, :num, :saldo, :valor)";
 
         $sttm = $this->conexao->prepare($sql);
-        $sttm->bindValue(':cor', $this->produto->__get('cor'));
-        $sttm->bindValue(':desc', $this->produto->__get('descricao'));
-        $sttm->bindValue(':gen', $this->produto->__get('genero'));
-        $sttm->bindValue(':marca', $this->produto->__get('marca'));
-        $sttm->bindValue(':num', $this->produto->__get('numeracao'));
-        $sttm->bindValue(':saldo', $this->produto->__get('saldoProduto'));
-        $sttm->bindValue(':valor', $this->produto->__get('valorUnitario'));
+        $sttm->bindValue(':cor', $produto->__get('cor'));
+        $sttm->bindValue(':desc', $produto->__get('descricao'));
+        $sttm->bindValue(':gen', $produto->__get('genero'));
+        $sttm->bindValue(':marca', $produto->__get('marca'));
+        $sttm->bindValue(':num', $produto->__get('numeracao'));
+        $sttm->bindValue(':saldo', $produto->__get('saldoProduto'));
+        $sttm->bindValue(':valor', $produto->__get('valorUnitario'));
 
         try {
             $sttm->execute();

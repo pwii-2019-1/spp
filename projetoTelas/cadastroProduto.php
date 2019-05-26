@@ -173,7 +173,38 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                    header('Location: ../Class/produto.controller.php?acao=popularTabela');
+                                    include_once '../Class/conexao.php';
+                                    include_once '../Class/produto.model.php';
+                                    include_once '../Class/produto.service.php';
+                                    $conn = new Conexao();
+                                    $ps = new ProdutoService($conn);
+                              
+
+                                    $sttm = $conn->prepare("SELECT * FROM produto");
+       
+
+
+                                    try {
+                                        $sttm->execute();
+                                    } catch (PDOException $exc) {
+                                        echo $exc->getTraceAsString();
+                                    }
+
+                                    while ($linha->fetch(PDO::FETCH_OBJ)) {
+                                   
+                                        echo "<tr>    
+                                                       <th scope=\"row\">". $linha->idproduto . "</th> 
+                                                                    <td>" . $linha->descricao . "</td>
+                                                                    <td>" . $linha->numeracao . "</td>
+                                                                    <td>" . $linha->genero . "</td>
+                                                                    <td>" . $linha->cor . "</td>
+                                                                    <td>" . $linha->marca . "</td>
+                                                                    <td>" . $linha->valorUnitario . "</td>
+                                                                    <td>" . $linha->saldoProduto . "</td>
+                                                                    <td>" . $linha->dataCadastro . "</td>
+                                             </tr>";
+                                    }
+
                                     ?>
                                 </tbody>
                             </table>
