@@ -2,17 +2,17 @@
 
 class Venda{
     
-    private $cliente;
-    private $colaborador;
-    private $descontoTotal;
-    private $valorTotal;
+    private $cliente;           //Atributo que ira receber o objeto Cliente.
+    private $colaborador;       //Atributo que ira receber o objeto Colaborador.
+    private $descontoTotal=0;   // Este atributo não esta no contrutor porque é calculado no metodo calcularValorDescontoTotal
+    private $valorTotal=0;      // Este atributo não esta no contrutor porque é calculado no metodo calcularValorTotalVenda
     private $condicaoPgto;
+    private $itens = [];        //Array para incluir os itens dos pedidos.
+   
         
-    public function __construct($cliente, $colaborador, $descontoTotal, $valorTotal, $condicaoPgto){
+    public function __construct($cliente, $colaborador, $condicaoPgto){
         $this-> cliente = $cliente;
         $this-> colaborador = $colaborador;
-        $this-> descontoTotal = $descontoTotal;
-        $this-> valorTotal = $valorTotal;
         $this-> condicaoPgto = $condicaoPgto;
         
     }
@@ -25,18 +25,33 @@ class Venda{
     function __get($atributo){
         return $this->$atributo;
     }   
+    
+    //Metodo que calcula o valor total da venda (Soma os valores total dos itens)    
+    public function calcularValorTotalVenda(){
+        $total=0;
+        foreach ($this->__get('itens') as $item) {
+            $total = $total + ($item->__get('valorTotalItem'));
+        }
+        
+        $this->valorTotal = $total;
+    }
+    
+    //Metodo que calcula o valor total dos descontos da venda (Soma os valores total dos descontos dos itens)
+    public function calcularValorDescontoTotal(){
+        $desconto=0;
+        foreach ($this->__get('itens') as $item){
+            $desconto = $desconto + ($item->__get('descontoItem'));
+        }
+        
+        $this->descontoTotal = $desconto;
+    }
+    
+    public function addItens($itemVenda){
+        $this->itens[] = $itemVenda;
+        $this->calcularValorTotalVenda();
+        $this->calcularValorDescontoTotal();
+    }
    
 }
-
-/*$teste = new Venda();
-$teste -> __set("codCliente", 1);
-$teste -> __set("codColaborador", 1);
-$teste -> __set("descontoTotal", 1.50);
-$teste -> __set("valorTotal", 10);
-$teste -> __set("condicaoPgto", "a Vista");
-
-echo $teste -> __get('codCliente') . $teste -> __get('codColaborador') . 
-$teste -> __get('descontoTotal'). $teste -> __get('valorTotal') . 
-$teste -> __get('condicaoPgto');*/
 
 ?>

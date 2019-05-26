@@ -1,17 +1,17 @@
 <?php
 
     class Conexao {
-        private $host = 'localhost';
-        private $dbname = 'mydb';
-        private $user = 'root';
-        private $password = '';
 
-        public function conectar() {
+        private static $host = "mysql:host=localhost;dbname=spp";
+        private static $user = 'root';
+        private static $password = '';
+        
+        public static function conectar() {
             try {
                 $conexao = new PDO(
-                    "mysql:host=$this->host;dbname=$this->dbname",
-                    "$this->user",
-                    "$this->password"
+                    self::$host,
+                    self::$user,
+                    self::$password
                 );
 
                 return $conexao;
@@ -19,4 +19,4 @@
                 echo "Erro: ".$e->getMessage();
             }
         }
-    }
+    }    

@@ -9,18 +9,18 @@
           $this-> conexao = Conexao::conectar();
 
         }
-
-        public function IncluirItemVenda(ItemVenda $itemVenda){
+        
+        // Metodo para gravar o item da venda no banco de dados itemVenda
+        public function inserirItemVenda(ItemVenda $itemVenda, $idVenda){
             $sql = "INSERT INTO itensVenda (qtdProduto, valor, desconto, idvenda, idproduto)"
-                ." VALUES (:qtdProduto, :valorTotalItem, :descontoItem, :codVenda, :produto)";
+                ." VALUES (:qtdProduto, :valorTotalItem, :descontoItem, :venda, :produto)";
         
-        $sttm = $this->conexao->prepare($sql);
-        
+        $sttm = $this->conexao->prepare($sql);        
         $sttm-> bindValue(':qtdProduto',$itemVenda-> __get('qtdProduto'));
         $sttm-> bindValue(':valorTotalItem',$itemVenda-> __get('valorTotalItem'));
         $sttm-> bindValue(':descontoItem', $itemVenda-> __get('descontoItem'));
-        $sttm-> bindValue(':codVenda', $itemVenda-> __get('codVenda'));       
-        $sttm-> bindValue(':produto',$itemVenda-> __get('produto'));
+        $sttm-> bindValue(':venda', $idVenda);       
+        $sttm-> bindValue(':produto',$itemVenda-> __get('produto')->__get('codProd'));
         
         try {            
             $sttm->execute();
@@ -33,13 +33,5 @@
 
        
  }
-
-$item1 = new ItemVenda(6, 10, 0, 150, 2);
-
-$iv = new ItemVendaService();
-
-
-$iv->IncluirItemVenda($item1);
-
 
  ?>

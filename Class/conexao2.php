@@ -1,22 +1,22 @@
 <?php
 
     class Conexao {
+        private $host = 'localhost';
+        private $dbname = 'mydb';
+        private $user = 'root';
+        private $password = '1q2w3e';
 
-        private static $host = "mysql:host=localhost;dbname=spp";
-        private static $user = 'root';
-        private static $password = 'Espa01t009dia';
-        
-        public static function conectar() {
+        public function conectar() {
             try {
                 $conexao = new PDO(
-                    self::$host,
-                    self::$user,
-                    self::$password
+                    "mysql:host=$this->host;dbname=$this->dbname",
+                    "$this->user",
+                    "$this->password"
                 );
 
                 return $conexao;
             } catch (PDOException $e) {
-                echo "Erro: ".$e->getMessage();
+                echo "Erro: ".$e->getMessage()." Código: ".$e->getCode();
             }
         }
-    }    
+    }

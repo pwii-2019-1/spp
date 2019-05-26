@@ -1,7 +1,7 @@
 <?php
 
 class Produto {
-
+    private $codProd;
     private $descricao;
     private $numeracao;
     private $genero;
@@ -9,7 +9,9 @@ class Produto {
     private $marca;
     private $valorUnitario;
     private $saldoProduto;
-
+    private $dataCadastro;
+    
+    
     //metodos get e sets
     public function __set($atrib, $value) {
         $this->$atrib = $value;
