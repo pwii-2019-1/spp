@@ -1,3 +1,5 @@
+<?php include_once '../Class/produto.service.php';$ps = new ProdutoService();?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -180,12 +182,9 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                    include_once '../Class/produto.service.php';
-                                    $ps = new ProdutoService();
-                                    
                                     foreach ($ps->populaTabela() as $key) {
                                         echo "<tr>    
-                                                    <th scope=\"row\">". $key['idproduto'] . "</th> 
+                                                    <th scope=\"row\">" . $key['idproduto'] . "</th> 
                                                                  <td>" . $key['descricao'] . "</td>
                                                                  <td>" . $key['numeracao'] . "</td>
                                                                  <td>" . $key['genero'] . "</td>
@@ -202,7 +201,10 @@
                                 </tbody>
 
                             </table>
+                            <form action="cadastroProduto.php" method="POST">
+                                <button id="topo" name="topo" class="btn btn-success" type="submit" >Ir para o topo</button>
 
+                            </form>
                         </div>
                         <script src="js/bootstrap.min.js"></script>
                         <script src="js/estilo-produto.js"></script>

@@ -59,6 +59,17 @@ class ProdutoService {
         return $produto;
     }
 
+    public function deleteProduto($id) {
+        $sql = "DELETE FROM produto WHERE id=:id";
+        $sttm = $this->conexao->prepare($sql);
+        $sttm->bindValue(':id', $id);
+        try {
+            $sttm->execute();
+        } catch (PDOException $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
     public function populaTabela() {
         $sql = "SELECT * FROM produto";
         $sttm = $this->conexao->prepare($sql);
@@ -70,6 +81,7 @@ class ProdutoService {
         }
         return $sttm->fetchAll(PDO::FETCH_ASSOC);
     }
+
 }
 
 // $conn = new Conexao();
