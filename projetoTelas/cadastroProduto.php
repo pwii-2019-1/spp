@@ -183,7 +183,7 @@
                                     include_once '../Class/produto.service.php';
                                     $ps = new ProdutoService();
                                     
-                                    foreach ($ps->populaTabelaProdutos() as $key) {
+                                    foreach ($ps->populaTabela() as $key) {
                                         echo "<tr>    
                                                     <th scope=\"row\">". $key['idproduto'] . "</th> 
                                                                  <td>" . $key['descricao'] . "</td>
