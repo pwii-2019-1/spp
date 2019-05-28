@@ -2,7 +2,7 @@
 
     class Conexao {
 
-        private static $host = "mysql:host=localhost;dbname=spp";
+        private static $host = "mysql:host=localhost;dbname=mydb";
         private static $user = 'root';
         private static $password = '';
         

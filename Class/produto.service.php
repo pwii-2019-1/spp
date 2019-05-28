@@ -5,9 +5,9 @@ include_once 'conexao.php';
 
 class ProdutoService {
 
-    private $conexao;  
+    private $conexao;
 
-    public function __construct(){
+    public function __construct() {
         $this->conexao = Conexao::conectar();
     }
 
@@ -33,7 +33,7 @@ class ProdutoService {
 
     public function getProdutoByID($id) {
         $sql = "SELECT * FROM produto WHERE idproduto = :id";
-        
+
         $sttm = $this->conexao->prepare($sql);
         $sttm->bindValue(':id', $id);
 
@@ -59,7 +59,7 @@ class ProdutoService {
         return $produto;
     }
 
-    public function getProdutos() {
+    public function populaTabela() {
         $sql = "SELECT * FROM produto";
         $sttm = $this->conexao->prepare($sql);
 
@@ -68,37 +68,16 @@ class ProdutoService {
         } catch (PDOException $exc) {
             echo $exc->getTraceAsString();
         }
-        //return $linha = $sttm->fetch(PDO::FETCH_OBJ);
-       // $dados = $conex->query('SELECT nome, email FROM cadastros');
-        while ($linha = $sttm->fetch(PDO::FETCH_OBJ)) {
-             echo "<tr><th scope=\"row\">"
-                                        . $linha->idproduto . "</th> <td>" . $linha->descricao . "</td>
-                                    <td>" . $linha->numeracao . "</td>
-                                    <td>" . $linha->genero . "</td>
-                                    <td>" . $linha->cor . "</td>
-                                    <td>" . $linha->marca . "</td>
-                                    <td>" . $linha->valorUnitario . "</td>
-                                    <td>" . $linha->saldoProduto . "</td>
-                                    <td>" . $linha->dataCadastro . "</td>
-                                  </tr>";
-        }
+        return $sttm->fetchAll(PDO::FETCH_ASSOC);
     }
-
 }
 
 // $conn = new Conexao();
 // $p = new Produto();
 // $ps = new ProdutoService();
-
 // $ps->getProdutoByID(1);
-
-
 // echo "<pre>";
 // print_r($ps->getProdutoByID(1));
 // echo "</pre>";
 
-
-
-?>
-<?php
 

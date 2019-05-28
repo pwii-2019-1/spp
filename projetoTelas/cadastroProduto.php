@@ -5,6 +5,9 @@
         <title>Cadastro de Produto</title>
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/estilo-produto.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     </head>
     <body background="img/sapatos2.jpg">
 
@@ -151,11 +154,14 @@
                             </fieldset>
                             </form>
                         </div>
-
+                        <!--                        campo de busca-->
+                        <!--                        <div class="active-pink-3 active-pink-4 mb-4" id="buscaProdTab">
+                                                    <input class="form-control" type="text" placeholder="Buscar" aria-label="Search">
+                                                </div>-->
                         <!-- mostrar tabela -->
-                        <div class="tabelaProdutos">
+                        <div class="tabelaProdutos table-responsive" id="tabelaProdutos">
 
-                            <table class="table table-dark">
+                            <table class="table table-dark  table-striped table-hover" >
 
                                 <thead>
                                     <tr>
@@ -168,46 +174,35 @@
                                         <th scope="col">Valor Unit</th>
                                         <th scope="col">Saldo</th>
                                         <th scope="col">Data Cadastro</th>
+                                        <th scope="col">Ação</th>
 
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    include_once '../Class/conexao.php';
-                                    include_once '../Class/produto.model.php';
                                     include_once '../Class/produto.service.php';
-                                    $conn = new Conexao();
-                                    $ps = new ProdutoService($conn);
-                              
-
-                                    $sttm = $conn->prepare("SELECT * FROM produto");
-       
-
-
-                                    try {
-                                        $sttm->execute();
-                                    } catch (PDOException $exc) {
-                                        echo $exc->getTraceAsString();
-                                    }
-
-                                    while ($linha->fetch(PDO::FETCH_OBJ)) {
-                                   
+                                    $ps = new ProdutoService();
+                                    
+                                    foreach ($ps->populaTabelaProdutos() as $key) {
                                         echo "<tr>    
-                                                       <th scope=\"row\">". $linha->idproduto . "</th> 
-                                                                    <td>" . $linha->descricao . "</td>
-                                                                    <td>" . $linha->numeracao . "</td>
-                                                                    <td>" . $linha->genero . "</td>
-                                                                    <td>" . $linha->cor . "</td>
-                                                                    <td>" . $linha->marca . "</td>
-                                                                    <td>" . $linha->valorUnitario . "</td>
-                                                                    <td>" . $linha->saldoProduto . "</td>
-                                                                    <td>" . $linha->dataCadastro . "</td>
-                                             </tr>";
+                                                    <th scope=\"row\">". $key['idproduto'] . "</th> 
+                                                                 <td>" . $key['descricao'] . "</td>
+                                                                 <td>" . $key['numeracao'] . "</td>
+                                                                 <td>" . $key['genero'] . "</td>
+                                                                 <td>" . $key['cor'] . "</td>
+                                                                 <td>" . $key['marca'] . "</td>
+                                                                 <td>" . $key['valorUnitario'] . "</td>
+                                                                 <td>" . $key['saldoProduto'] . "</td>
+                                                                 <td>" . $key['datacadastro'] . "</td>
+                                                                 <td><a href=\"#\" > <img id=\"editar\" src=\"img/icons8-editar-26.png\">
+                                                                         <a href=\"#\" > <img id=\"excluir\" src=\"img/icons8-excluir-26.png\"> </a></td> 
+                                            </tr>";
                                     }
-
                                     ?>
                                 </tbody>
+
                             </table>
+
                         </div>
                         <script src="js/bootstrap.min.js"></script>
                         <script src="js/estilo-produto.js"></script>

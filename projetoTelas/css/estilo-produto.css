@@ -1,7 +1,7 @@
 body {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: #eee;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #eee;
 }
 
 button {
@@ -18,13 +18,30 @@ h11 {
 }
 
 .container {
-  background-color: #C1CDCD;
+    background-color: #C1CDCD;
 }
 
 .panel-heading {
-  text-align: center;
+    text-align: center;
 }
 
 .help-block {
-  text-align: right;
+    text-align: right;
+}
+
+#tabelaProdutos {
+    width:90%;
+    margin-left: 68px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+#buscaProdTab {
+    width: 150px;
+    margin-left: 1130px;
+    margin-top: 10px;
+}
+#excluir ,#editar {
+    margin: 5px;
+    width: 17px;
 }
