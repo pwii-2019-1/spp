@@ -3,13 +3,11 @@
 include_once 'pessoa.model.php';
 
 class Cliente extends Pessoa {
-
-    private $dataUltimaCompra;
+    //private $dataUltimaCompra;
 
     public function __construct($nome, $cpf, $rg, $sexo, $dataNascimento, $tel, $email, $logradouro, $bairro, $cidade, $estado, $cep){
         parent::__construct($nome, $cpf, $rg, $sexo, $dataNascimento, $tel, $email, $logradouro, $bairro, $cidade, $estado, $cep);
 
-        
         $this->__set('nome', $nome);
         $this->__set('cpf', $cpf);
         $this->__set('rg', $rg);
@@ -24,19 +22,18 @@ class Cliente extends Pessoa {
         $this->__set('cep', $cep);
     }
 
-
+    public function __get($atributo) {
+        return $this->$atributo;
+    }
+    public function __set($atributo, $valor) {
+        $this->$atributo = $valor;
+    }
 }
-
-// $teste = new Cliente("Joao", "0000000000", "0123", 'M', "19/08/1987", "123456", "Neto@neto", "Rua BBC", "Jd Ana edith", "Jaragua", "GO", "444444", "12/12/12");
-
-
-// echo "<pre>";
-
-// print_r($teste);
-
-// // //formas de acesso 
-// // echo $teste->__get('nome');
-
-// echo "</pre>";
+/*$teste = new Cliente("Joao", "0000000000", "0123", 'M', "19/08/1987", "123456", "Neto@neto", "Rua BBC", "Jd Ana edith", "Jaragua", "GO", "444444", "12/12/12");
+echo "<pre>";
+print_r($teste);
+// // //formas de acesso
+echo $teste->__get('nome');
+echo "</pre>";*/
 
 ?>
