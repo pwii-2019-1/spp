@@ -1,0 +1,28 @@
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-right: 180px;
+  padding-left: 180px;
+  background-color: #eee;
+}
+
+button {
+    width: 16%;
+    margin-bottom: 15px;
+}
+
+.panel-heading{
+    font-size:150%;
+}
+
+.container {
+  background-color: #C1CDCD;
+}
+
+.panel-heading {
+  text-align: center;
+}
+
+.help-block {
+  text-align: right;
+}
