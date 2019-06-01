@@ -196,7 +196,7 @@ $ps = new ProdutoService();
                                             <td><?php echo $key['datacadastro'];?></td>
                                             <td>
                                                 <button type="button" id="btn-editar" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
-                                                    <a href="" > <img id="editar" src="img/icons8-editar-26.png">
+                                                    <a href="#" > <img id="editar" src="img/icons8-editar-26.png">
                                                 </button>
 
                                                 <button type="button" id="btn-editar" class="btn btn-primary" data-toggle="modal">
@@ -243,7 +243,7 @@ $ps = new ProdutoService();
                                                                                                     <label for="nome">Descrição do Produto </label>
                                                                                                     <input id="nomeModal" name="descricao" class="form-control" type="text">
                                                                                                     <script>
-                                                                                                            document.getElementById('nomeModal').value = <?php $key['descricao']?>;
+                                                                                                            //document.getElementById('nomeModal').value = "conteudo do banco de dados";
 
 
                                                                                                     </script>
