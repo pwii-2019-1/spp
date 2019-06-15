@@ -101,6 +101,12 @@ function carregaModal(nome, num, gen, cor, marca, valor, saldo, id) {
     document.getElementById('valorunitModal').value = valor;
     document.getElementById('saldoprodModal').value = saldo;
     document.getElementById('linkEditarModal').href = "../Class/produto.controller.php?acao=editar&&id="+id;
+    alteraLabel(id);
 
 
+}
+
+function alteraLabel(id) {
+  document.getElementById("divCod").innerHTML = id;
+  
 }

@@ -236,11 +236,15 @@ $ps = new ProdutoService();
                                                                                 </br>
                                                                                 <div class="panel-heading btn-primary"><h2>Editar Produto</h2>
                                                                                 </div>
-
+                                                                                   
                                                                                 <div class="panel-body">
                                                                                     <div class="form-group">
-
-                                                                                        <div class="col-md-15 control-label">
+                                                                                        <div id="codModal">
+                                                                                            <h4>Cód: 
+                                                                                                <label for="cod" id="divCod"/> 
+                                                                                            </h4>
+                                                                                        </div>
+                                                                                        <label><h4></h4></label>                                                                                        <div class="col-md-15 control-label">
                                                                                             <p class="help-block"><h11>*</h11> Campo Obrigatório </p>
                                                                                         </div>
                                                                                     </div>
