@@ -30,6 +30,13 @@ class ProdutoService {
             echo $exc->getTraceAsString();
         }
     }
+    public function alterarProduto($id){
+      $sql = "INSERT INTO produto (cor,datacadastro,descricao,genero,marca,numeracao,saldoProduto,valorUnitario)"
+                . " VALUES (:cor, NOW(), :desc, :gen,  :marca, :num, :saldo, :valor)";
+
+        $sttm = $this->conexao->prepare($sql);
+        
+    }
 
     public function getProdutoByID($id) {
         $sql = "SELECT * FROM produto WHERE idproduto = :id";
@@ -83,13 +90,3 @@ class ProdutoService {
     }
 
 }
-
-// $conn = new Conexao();
-// $p = new Produto();
-// $ps = new ProdutoService();
-// $ps->getProdutoByID(1);
-// echo "<pre>";
-// print_r($ps->getProdutoByID(1));
-// echo "</pre>";
-
-

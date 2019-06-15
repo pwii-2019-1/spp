@@ -20,6 +20,7 @@ if ($acao == 'inserir') {
     $produtoService = new ProdutoService();
     $produtoService->inserirProduto($produto);
     header('Location: ../projetoTelas/cadastroProduto.php#topo');
-} else if ($acao == 'deletar') {
+} else if ($acao == 'editar') {
     $ps = new ProdutoService();
+    
 }

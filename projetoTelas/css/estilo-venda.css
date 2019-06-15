@@ -1,9 +1,10 @@
 body {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  padding-right: 180px;
-  padding-left: 180px;
-  background-color: #eee;
+    background-image: url(../img/sapatos2.jpg);
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-right: 180px;
+    padding-left: 180px;
+    background-color: #eee;
 }
 
 button {
@@ -16,13 +17,13 @@ button {
 }
 
 .container {
-  background-color: #C1CDCD;
+    background-color: #C1CDCD;
 }
 
 .panel-heading {
-  text-align: center;
+    text-align: center;
 }
 
 .help-block {
-  text-align: right;
+    text-align: right;
 }

@@ -81,9 +81,11 @@ document.getElementById(i).readOnly= true;
 function desabilita(i) {
    document.getElementById(i).disabled = true;
   }
+//
+//function habilita(i) {
+//      document.getElementById(i).disabled = false;
+//  }
 
-function habilita(i) {
-      document.getElementById(i).disabled = false;
-  }
-
+function carregaModal(id, valor) {
+    document.getElementById(id).value = valor;
 }
