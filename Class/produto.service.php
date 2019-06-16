@@ -11,10 +11,9 @@ class ProdutoService {
         $this->conexao = Conexao::conectar();
     }
 
-    public function inserirProduto($produto) {
+    public function inserirProduto(Produto $produto) {
         $sql = "INSERT INTO produto (cor,datacadastro,descricao,genero,marca,numeracao,saldoProduto,valorUnitario)"
                 . " VALUES (:cor, NOW(), :desc, :gen,  :marca, :num, :saldo, :valor)";
-
         $sttm = $this->conexao->prepare($sql);
         $sttm->bindValue(':cor', $produto->__get('cor'));
         $sttm->bindValue(':desc', $produto->__get('descricao'));
@@ -30,15 +29,29 @@ class ProdutoService {
             echo $exc->getTraceAsString();
         }
     }
-    public function alterarProduto($id){
-      $sql = "INSERT INTO produto (cor,datacadastro,descricao,genero,marca,numeracao,saldoProduto,valorUnitario)"
-                . " VALUES (:cor, NOW(), :desc, :gen,  :marca, :num, :saldo, :valor)";
 
+    public function alterarProduto(Produto $produto) {
+
+        $sql = "UPDATE produto SET descricao=:desc, numeracao=:num, genero=:gen, cor=:cor, marca=:marca,"
+                . "valorUnitario=:valor, saldoProduto=:saldo WHERE idproduto=:id;";
         $sttm = $this->conexao->prepare($sql);
-        
+        $sttm->bindValue(':id', $produto->__get('codProd'));
+        $sttm->bindValue(':cor', $produto->__get('cor'));
+        $sttm->bindValue(':desc', $produto->__get('descricao'));
+        $sttm->bindValue(':gen', $produto->__get('genero'));
+        $sttm->bindValue(':marca', $produto->__get('marca'));
+        $sttm->bindValue(':num', $produto->__get('numeracao'));
+        $sttm->bindValue(':saldo', $produto->__get('saldoProduto'));
+        $sttm->bindValue(':valor', $produto->__get('valorUnitario'));
+        try {
+            
+            $sttm->execute();
+        } catch (PDOException $exc) {
+            echo $exc->getTraceAsString();
+        }
     }
 
-    public function getProdutoByID($id) {
+    public  function getProdutoByID($id) {
         $sql = "SELECT * FROM produto WHERE idproduto = :id";
 
         $sttm = $this->conexao->prepare($sql);

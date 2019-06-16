@@ -87,6 +87,8 @@ function habilita(i) {
 }
 
 function carregaModal(nome, num, gen, cor, marca, valor, saldo, id) {
+    alteraLabel(id);
+    linkForm(id);
     document.getElementById('nomeModal').value = nome;
     document.getElementById('numeracaoModal').value = num;
 
@@ -100,9 +102,14 @@ function carregaModal(nome, num, gen, cor, marca, valor, saldo, id) {
     document.getElementById('marcaModal').value = marca;
     document.getElementById('valorunitModal').value = valor;
     document.getElementById('saldoprodModal').value = saldo;
-    document.getElementById('linkEditarModal').href = "../Class/produto.controller.php?acao=editar&&id="+id;
-    alteraLabel(id);
+//    document.getElementById('linkEditarModal').href = "../Class/produto.controller.php?acao=editar&id="+id;
+    
 
+
+}
+
+function linkForm(id){
+    document.getElementById('formModal').action = "../Class/produto.controller.php?acao=editar&id="+id;
 
 }
 
