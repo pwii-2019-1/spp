@@ -1,9 +1,11 @@
 body {
+    margin-top: 68px;
     background-image: url(../img/sapatos2.jpg);
-    padding-top: 40px;
+/*    padding-top: 40px;
     padding-bottom: 40px;
     padding-right: 180px;
-    padding-left: 180px;
+    padding-left: 180px;*/
+width: 100%;
     background-color: #eee;
 }
 
@@ -18,7 +20,7 @@ button {
 
 .container {
     background-color: #C1CDCD;
-}
+width: 90%;}
 
 .panel-heading {
     text-align: center;

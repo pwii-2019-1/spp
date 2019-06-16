@@ -1,41 +1,48 @@
 <html>
     <head>
         <title></title>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/js.header.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/estilo.header.css" />
+
+        <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css' />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
 
 
-
-
-        <link rel="stylesheet" type="text/css" href="css/estilo.header.css" />
     </head>
-    <body id="hdbody">
-        <header class="colorbg">
-            <h1 class="float-l">
-                <a href="#" title="Titulo do Site"><img id="logospp" src="img/spp.png"></a>
-            </h1>
 
-            <input type="checkbox" id="control-nav" />
-            <label for="control-nav" class="control-nav"></label>
-            <label for="control-nav" class="control-nav-close"></label>
 
-            <nav class="float-r">
-                <ul class="list-auto">
-                    <li>
-                        <a href="cadastroProduto.php" title="Chaves">Produtos</a>
-                    </li>
-                    <li>
-                        <a href="telaVendas.html" title="Vendas">Vendas</a>
-                    </li>
-                    <li>
-                        <a href="cadastroCliente.html" title="Cliente">Clientes</a>
-                    </li>
-                    <li>
-                        <a href="cadastroColaborador.html" title="Colaborador">Colaborador</a>
-                    </li>
+
+
+    <body>
+        <input type="checkbox" id="menu">
+        <label for="menu" class="menu"><i class="fa fa-bars"></i>
+        </label>
+        <div id="header" class="nav navbar-collapse">
+
+            <nav class="nav navbar-collapse">
+                <ul>
+                    <li><a href="#"><img id="sppLogo" src="img/spp.png" /></a></li>
+                    <li><a href="cadastroProduto.php">Produtos</a></li>
+                    <li><a href="telaVendas.php">Vendas</a></li>
+
+                    <li><a href="cadastroColaborador.php">Funcionários</a></li>
+                    <li><a href="cadastroCliente.php">Clientes</a></li>
+
                 </ul>
             </nav>
-        </header>
+        </div>
+
+
     </body>
+
+
+
+
+
 </html>
