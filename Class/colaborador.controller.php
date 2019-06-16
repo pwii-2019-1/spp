@@ -25,8 +25,27 @@ $acao = filter_input(INPUT_GET, 'acao') ? filter_input(INPUT_GET, 'acao') : $aca
     $colaboradorService = new ColaboradorService();
     $colaboradorService->inserirColaborador($colaborador);
     header('Location: ../projeto/cadastroColaborador.php#topo');
-  } else if ($acao == 'excluir') {
-      $cs = new ColaboradorService();
-}
+  } else if ($acao == 'editar') {
+    $colaborador = new Colaborador();
+    $colaborador->__set('codCliente', filter_input(INPUT_GET, 'idcliente'));
+    $colaborador->__set('nome', filter_input(INPUT_POST, 'nomeModal'));
+    $colaborador->__set('cpf', filter_input(INPUT_POST, 'cpfModal'));
+    $colaborador->__set('rg', filter_input(INPUT_POST, 'rgModal'));
+    $colaborador->__set('sexo', filter_input(INPUT_POST, 'sexoModal'));
+    $colaborador->__set('dataNascimento', filter_input(INPUT_POST, 'dataNascimentoModal'));
+    $colaborador->__set('tel', filter_input(INPUT_POST, 'telModal'));
+    $colaborador->__set('email', filter_input(INPUT_POST, 'emailModal'));
+    $colaborador->__set('logradouro', filter_input(INPUT_POST, 'logradouroModal'));
+    $colaborador->__set('bairro', filter_input(INPUT_POST, 'bairroModal'));
+    $colaborador->__set('cidade', filter_input(INPUT_POST, 'cidadeModal'));
+    $colaborador->__set('estado', filter_input(INPUT_POST, 'estadoModal'));
+    $colaborador->__set('cep', filter_input(INPUT_POST, 'cepModal'));
+    $colaborador->__set('perfil', filter_input(INPUT_POST, 'perfilModal'));
+    $colaborador->__set('senha', filter_input(INPUT_POST, 'senhaModal'));
+    echo $colaborador->__get('sexo');
+    $cos = new ColaboradorService();
+    $cos->alterarProduto($colaborador);
+    header('Location: ../projetoTelas/cadastroColaborador.php');
+  }
 
 ?>

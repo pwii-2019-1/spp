@@ -1,11 +1,9 @@
 <?php
-
     class Conexao {
-
-        private static $host = "mysql:host=localhost;dbname=mydb";
+        private static $host = "mysql:host=localhost;dbname=spp";
         private static $user = 'root';
         private static $password = '';
-        
+
         public static function conectar() {
             try {
                 $conexao = new PDO(
@@ -13,10 +11,9 @@
                     self::$user,
                     self::$password
                 );
-
                 return $conexao;
             } catch (PDOException $e) {
                 echo "Erro: ".$e->getMessage();
             }
         }
-    }    
+}

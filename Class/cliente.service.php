@@ -10,7 +10,7 @@ class ClienteService {
         $this->conexao = Conexao::conectar();
     }
 
-    public function CadastrarCliente(Cliente $cliente){
+    public function inserirCliente(Cliente $cliente){
       $sql = 'INSERT INTO cliente (nome, cpf, rg, sexo, dataNascimento, tel, email, logradouro, bairro, cidade, estado, cep, dataCadastro, dataUltimaCompra)'
               .' VALUES (:nome, :cpf, :rg, :sexo, :dataNascimento, :tel, :email, :logradouro, :bairro, :cidade, :estado, :cep, NOW(), NOW())';
 
@@ -38,41 +38,8 @@ class ClienteService {
           }
       }
 
-      public function getClienteByID($id) {
-        $sql = "SELECT * FROM cliente WHERE idcliente = :id";
 
-        $sttm = $this->conexao->prepare($sql);
-        $sttm->bindValue(':id', $id);
-
-          try {
-              $sttm->execute();
-            } catch (PDOException $exc) {
-                echo $exc->getTraceAsString();
-            }
-
-        $resul = $sttm->fetchAll(PDO::FETCH_ASSOC);
-
-        $cliente = new Produto();
-        $cliente->__set('codcliente', $resul[0]['idcliente']);
-        $cliente->__set('nome', $resul[0]['nome']);
-        $cliente->__set('cpf', $resul[0]['cpf']);
-        $cliente->__set('rg', $resul[0]['rg']);
-        $cliente->__set('sexo', $resul[0]['sexo']);
-        $cliente->__set('dataNascimento', $resul[0]['dataNascimento']);
-        $cliente->__set('tel', $resul[0]['tel']);
-        $cliente->__set('email', $resul[0]['email']);
-        $cliente->__set('logradouro', $resul[0]['logradouro']);
-        $cliente->__set('bairro', $resul[0]['bairro']);
-        $cliente->__set('cidade', $resul[0]['cidade']);
-        $cliente->__set('estado', $resul[0]['estado']);
-        $cliente->__set('cep', $resul[0]['cep']);
-        $cliente->__set('dataCadastro', $resul[0]['dataCadastro']);
-        $cliente->__set('dataUltimaCompra', $resul[0]['dataUltimaCompra']);
-
-        return $cliente;
-          }
-
-    public function AlterarCliente(Cliente $cliente){
+    public function alterarCliente(Cliente $cliente){
       $sql = 'UPDATE cliente SET nome = :nome, cpf = :cpf, rg = :rg, sexo = :sexo, dataNascimento = :dataNascimento, tel = :tel, email = :email, logradouro = :logradouro, bairro = :bairro, cidade = :cidade, estado = :estado, cep = :cep, dataCadastro = NOW(), dataUltimaCompra = NOW() WHERE idcliente = :idcliente';
 
       $sttm = $this->conexao->prepare($sql);
@@ -99,8 +66,42 @@ class ClienteService {
             echo 'Erro ao alterar!';
         }
     }
+    public function getClienteByID($id) {
+      $sql = "SELECT * FROM cliente WHERE idcliente = :id";
 
-    public function ExcluirCliente(Cliente $cliente){
+      $sttm = $this->conexao->prepare($sql);
+      $sttm->bindValue(':id', $id);
+
+        try {
+            $sttm->execute();
+          } catch (PDOException $exc) {
+              echo $exc->getTraceAsString();
+          }
+
+      $resul = $sttm->fetchAll(PDO::FETCH_ASSOC);
+
+      $cliente = new Produto();
+      $cliente->__set('codcliente', $resul[0]['idcliente']);
+      $cliente->__set('nome', $resul[0]['nome']);
+      $cliente->__set('cpf', $resul[0]['cpf']);
+      $cliente->__set('rg', $resul[0]['rg']);
+      $cliente->__set('sexo', $resul[0]['sexo']);
+      $cliente->__set('dataNascimento', $resul[0]['dataNascimento']);
+      $cliente->__set('tel', $resul[0]['tel']);
+      $cliente->__set('email', $resul[0]['email']);
+      $cliente->__set('logradouro', $resul[0]['logradouro']);
+      $cliente->__set('bairro', $resul[0]['bairro']);
+      $cliente->__set('cidade', $resul[0]['cidade']);
+      $cliente->__set('estado', $resul[0]['estado']);
+      $cliente->__set('cep', $resul[0]['cep']);
+      $cliente->__set('dataCadastro', $resul[0]['dataCadastro']);
+      $cliente->__set('dataUltimaCompra', $resul[0]['dataUltimaCompra']);
+
+        return $cliente;
+        }
+
+
+    public function excluirCliente(Cliente $cliente){
         $sql = 'DELETE FROM cliente WHERE idcliente = :idcliente';
 
         $sttm = $this->conexao->prepare($sql);
@@ -116,8 +117,8 @@ class ClienteService {
         }
     }
 
-    public function BuscarCliente(Cliente $cliente){
-        $sql = "SELECT nome = :nome, cpf = :cpf, rg = :rg, sexo = :sexo, dataNascimento = :dataNascimento, tel = :tel, email = :email, logradouro = :logradouro, bairro = :bairro, cidade = :cidade, estado = :estado, cep = :cep, dataCadastro = NOW(), dataUltimaCompra = NOW() FROM cliente WHERE idcliente = :idcliente";
+    public function buscarCliente(Cliente $cliente){
+        $sql = "SELECT idcliente = :idcliente; nome = :nome, cpf = :cpf, rg = :rg, sexo = :sexo, dataNascimento = :dataNascimento, tel = :tel, email = :email, logradouro = :logradouro, bairro = :bairro, cidade = :cidade, estado = :estado, cep = :cep, dataCadastro = NOW(), dataUltimaCompra = NOW() FROM cliente WHERE idcliente = :idcliente";
 
         $sttm = $this->conexao->prepare($sql);
 
@@ -142,32 +143,20 @@ class ClienteService {
         }
     }
 
-    public function BuscarPorNome(Cliente $cliente){
-        $sql = 'SELECT FROM cliente WHERE nome = :nome';
+    public function populaTabela() {
+      $sql = "SELECT * FROM cliente";
 
-        $sttm = $this->conexao->prepare($sql);
+      $sttm = $this->conexao->prepare($sql);
 
-        $sttm->bindValue(':nome',$cliente->__get('nome'));
-
-        try {
-            $sttm->execute();
+      try {
+          $sttm->execute();
         } catch (PDOException $exc) {
-            echo $exc->getTraceAsString();
+          echo $exc->getTraceAsString();
         }
-    }
+        return $sttm->fetchAll(PDO::FETCH_ASSOC);
+      }
 
-    public function ListarTodos(Cliente $cliente){
-        $sql = 'SELECT * FROM cliente';
-
-        $sttm = $this->conexao->prepare($sql);
-
-        try {
-            $sttm->execute();
-        } catch (PDOException $exc) {
-            echo $exc->getTraceAsString();
-        }
-    }
-    }
+}
 
 // // // Para cadastrar novo cliente
 /*$c = new Cliente("Marcela", "267.654.780-19", "789637524", "Feminino", "20/09/1987", "62 98789-9876", "anapaula@gmail.com", "Rua H", "Centro", "Rubiataba", "GO", "76.37-000");
@@ -175,7 +164,7 @@ echo "<pre>";
 print_r($c);
 echo "</pre>";
 $cs = new ClienteService();
-$cs->CadastrarCliente($c);
+$cs->inserirCliente($c);
 echo "<pre>";
 print_r($cs);
 echo "</pre>";*/
@@ -188,7 +177,7 @@ echo "<pre>";
 print_r($c);
 echo "</pre>";
 $cs = new ClienteService();
-$cs->AlterarCliente($c);
+$cs->alterarCliente($c);
 echo "<pre>";
 print_r($c);
 echo "</pre>";*/
@@ -201,7 +190,7 @@ echo "<pre>";
 print_r($c);
 echo "</pre>";
 $cs = new ClienteService();
-$cs->ExcluirCliente($c);
+$cs->excluirCliente($c);
 echo "<pre>";
 print_r($c);
 echo "</pre>";*/
@@ -214,7 +203,7 @@ echo "<pre>";
 print_r($c);
 echo "</pre>";
 $cs = new ClienteService();
-$cs->BuscarCliente($c);
+$cs->buscarCliente($c);
 echo "<pre>";
 print_r($cs);
 echo "</pre>";*/
@@ -227,7 +216,7 @@ echo "</pre>";
 print_r($c);
 echo "</pre>";
 $cs = new ClienteService();
-$cs->BuscarPorNome($c);
+$cs->buscarPorNome($c);
 echo "<pre>";
 print_r($cs);
 echo "</pre>";*/
@@ -239,10 +228,17 @@ echo "<pre>";
 print_r($c);
 echo "</pre>";
 $cs = new ClienteService();
-$cs->ListarTodos($c);
+$cs->listarTodos($c);
 echo "<pre>";
 print_r($cs);
 echo "</pre>";*/
 // // //
+
+/*$c = new Cliente();
+$cs = new ClienteService();
+$cs->getClienteByID(1);
+echo "<pre>";
+print_r($cs->getClienteByID(1));
+echo "</pre>";*/
 
 ?>
