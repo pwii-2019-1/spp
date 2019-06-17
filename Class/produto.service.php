@@ -24,7 +24,7 @@ class ProdutoService {
         $sttm->bindValue(':valor', $produto->__get('valorUnitario'));
 
         try {
-            $sttm->execute();
+            return $sttm->execute();
         } catch (PDOException $exc) {
             echo $exc->getTraceAsString();
         }
@@ -44,14 +44,13 @@ class ProdutoService {
         $sttm->bindValue(':saldo', $produto->__get('saldoProduto'));
         $sttm->bindValue(':valor', $produto->__get('valorUnitario'));
         try {
-            
             $sttm->execute();
         } catch (PDOException $exc) {
             echo $exc->getTraceAsString();
         }
     }
 
-    public  function getProdutoByID($id) {
+    public function getProdutoByID($id) {
         $sql = "SELECT * FROM produto WHERE idproduto = :id";
 
         $sttm = $this->conexao->prepare($sql);

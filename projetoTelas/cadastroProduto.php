@@ -155,7 +155,10 @@ $ps = new ProdutoService();
 
 
                                 <button id="limpar" name="Limpar" class="btn btn-warning" onclick="limpa_formulario()" type="reset">Limpar</button>
-                                <button id="Buscar" name="Buscar" class="btn btn-inverse">Buscar</button>
+                                <div id="search">
+                                    <label >Buscar: </label>
+                                    <input type="text" id="inputText" alt="lista-clientes" onkeyup="buscaTable()"  placeholder="buscar..." />
+                                </div>
                             </div>
                         </div></div>
                 </fieldset>
@@ -169,10 +172,10 @@ $ps = new ProdutoService();
 
         <div class="tabelaProdutos table-responsive" id="tabelaProdutos">
 
-            <table id="tabela"class="table table-dark  table-striped table-hover" >
+            <table id="tabela" class="table table-dark  table-striped table-hover" >
 
                 <thead>
-                    <tr>
+                    <tr class="tr">
                         <th scope="col">Código</th>
                         <th scope="col">Descrição</th>
                         <th scope="col">Numeração</th>
@@ -187,7 +190,7 @@ $ps = new ProdutoService();
                     </tr>
                 </thead>
 
-                <tbody>
+                <tbody id="tbody">
                     <?php foreach ($ps->populaTabela() as $key) { ?>
                         <tr>    
                             <th scope="row"><?php echo $key['idproduto']; ?></th> 
@@ -371,7 +374,7 @@ $ps = new ProdutoService();
 
                                 </fieldset>
                             </form>
-                                
+                            
 
                         </div>
                     </div>
@@ -388,10 +391,15 @@ $ps = new ProdutoService();
         <!--                        MODAL-->
 
         <script src="js/estilo-produto.js"></script>
-
+        <script src="js/buscaEmTabela.js"
         <script src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.quicksearch/2.3.1/jquery.quicksearch.js"></script>
+        <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+        
+        </script>
     </body>
 </html>

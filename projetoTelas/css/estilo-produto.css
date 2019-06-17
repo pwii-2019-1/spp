@@ -68,3 +68,8 @@ h11 {
 .form-row{
     margin-left: 5px;
 }
+
+#search {
+    margin-left: 76%;
+    color: #ff0000;
+}
