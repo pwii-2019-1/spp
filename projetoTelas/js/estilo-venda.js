@@ -1,66 +1,30 @@
 function limpa_formulario() {
           //Limpa valores do formulário.
-          document.getElementById('descricaoProd').value=("");
-          document.getElementById('numeracao').value=("");
-          document.getElementById('genero').value=("");
-          document.getElementById('cor').value=("");
-          document.getElementById('marca').value=("");
-          document.getElementById('valorUnitario').value=("");
-          document.getElementById('saldoProduto').value=("");
+          document.getElementById('codVenda').value=("");
+          document.getElementById('codCliente').value=("");
+          document.getElementById('codColaborador').value=("");
+          document.getElementById('descontoTotal').value=("");
+          document.getElementById('valorTotal').value=("");
+          document.getElementById('condicaoPgto').value=("");
+          document.getElementById('itemVenda').value=("Item");
   }
 
   function meu_callback(conteudo) {
       if (!("erro" in conteudo)) {
           //Atualiza os campos com os valores.
-          document.getElementById('descricaoProd').value=(conteudo.descricaoProd);
-          document.getElementById('numeracao').value=(conteudo.numeracao);
-          document.getElementById('genero').value=(conteudo.genero);
-          document.getElementById('cor').value=(conteudo.cor);
-          document.getElementById('marca').value=(conteudo.marca);
-          document.getElementById('valorUnitario').value=(conteudo.valorUnitario);
-          document.getElementById('saldoProduto').value=(conteudo.saldoProduto);
+          document.getElementById('codVenda').value=(conteudo.codVenda);
+          document.getElementById('codCliente').value=(conteudo.codCliente);
+          document.getElementById('codColaborador').value=(conteudo.codColaborador);
+          document.getElementById('descontoTotal').value=(conteudo.descontoTotal);
+          document.getElementById('valorTotal').value=(conteudo.valorTotal);
+          document.getElementById('condicaoPgto').value=(conteudo.condicaoPgto);
+          document.getElementById('itemVenda').value=(conteudo.itemVenda);
       } //end if.
       else {
           //Descrição não Encontrada.
           limpa_formulario_descricaoProd();
           alert("Descrição não encontrada.");
           document.getElementById('descricaoProd').value=("");
-      }
-  }
-
-  function pesquisadescricaoProd(valor) {
-
-      //Nova variável "cpf" somente com dígitos.
-      var descricaoProd = valor.replace(/\D/g, '');
-
-      //Verifica se campo descricaoProd possui valor informado.
-      if (descricaoProd !== "") {
-
-          //Expressão regular para validar o descricaoProd.
-          var validadescricaoProd = /^[0-30]{29}$/;
-
-          //Valida o formato do descricaoProd.
-          if(validadescricaoProd.test(descricaoProd)) {
-
-              //Cria um elemento javascript.
-              var script = document.createElement('script');
-
-              //Sincroniza com o callback.
-              script.src = '//viadescricaoProd.com.br/ws/'+ descricaoProd + '/json/?callback=meu_callback';
-
-              //Insere script no documento e carrega o conteúdo.
-              document.body.appendChild(script);
-
-          } //end if.
-          else {
-              //descricaoProd é inválida.
-              limpa_formulario_descricaoProd();
-              alert("Formato de descrição é inválida.");
-          }
-      } //end if.
-      else {
-          //descricaoProd sem valor, limpa formulário.
-          limpa_formulario_descricaoProd();
       }
   }
 
@@ -86,3 +50,25 @@ function habilita(i) {
       document.getElementById(i).disabled = false;
   }
 
+<<<<<<< HEAD
+=======
+
+  function carregaModal(descontoTotal, valorTotal, condicaoPgto, itemVenda, id) {
+      alteraLabel(id);
+      linkForm(id);
+      document.getElementById('descontoTotalModal').value = descontoTotal;
+      document.getElementById('valorTotalModal').value = valorTotal;
+      document.getElementById('condicaoPgtoModal').value = condicaoPgto;
+      document.getElementById('itemVendaModal').value = itemVenda;
+  //    document.getElementById('linkEditarModal').href = "../Class/venda.controller.php?acao=editar&id="+id;
+
+  }
+
+  function linkForm(id){
+      document.getElementById('formModal').action = "../Class/venda.controller.php?acao=editar&id="+id;
+  }
+
+  function alteraLabel(id) {
+    document.getElementById("divCod").innerHTML = id;
+  }
+>>>>>>> c02ca57428725d9710e50949286b829cd2556722

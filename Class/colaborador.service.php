@@ -11,7 +11,7 @@ class ColaboradorService {
         $this->conexao = Conexao::conectar();
     }
 
-    public function CadastrarColaborador(Colaborador $colaborador){
+    public function inserirColaborador(Colaborador $colaborador){
         $sql = "INSERT INTO colaborador (nome, cpf, rg, sexo, dataNascimento, tel, email, logradouro, bairro, cidade, estado, cep, dataCadastro, perfil, senha)"
             ." VALUES (:nome, :cpf, :rg, :sexo, :dataNascimento, :tel, :email, :logradouro, :bairro, :cidade, :estado, :cep, NOW(), :perfil, :senha)";
 
@@ -76,7 +76,7 @@ class ColaboradorService {
         return $colaborador;
     }
 
-    public function AlterarColaborador(Colaborador $colaborador){
+    public function alterarColaborador(Colaborador $colaborador){
         $sql = 'UPDATE colaborador SET nome = :nome, cpf = :cpf, rg = :rg, sexo = :sexo, dataNascimento = :dataNascimento, tel = :tel, email = :email, logradouro = :logradouro, bairro = :bairro, cidade = :cidade, estado = :estado, cep = :cep, dataCadastro = NOW(), perfil = :perfil, senha = :senha WHERE idcolaborador = :idcolaborador';
 
         $sttm = $this->conexao->prepare($sql);
@@ -107,7 +107,7 @@ class ColaboradorService {
         }
     }
 
-    public function ExcluirColaborador(Colaborador $colaborador){
+    public function excluirColaborador(Colaborador $colaborador){
         $sql = 'DELETE FROM colaborador WHERE idcolaborador = :idcolaborador';
 
         $sttm = $this->conexao->prepare($sql);
@@ -123,7 +123,7 @@ class ColaboradorService {
         }
     }
 
-    public function BuscarColaborador(Colaborador $colaborador){
+    public function buscarColaborador(Colaborador $colaborador){
         $sql = "SELECT nome = :nome, cpf = :cpf, rg = :rg, sexo = :sexo, dataNascimento = :dataNascimento, tel = :tel, email = :email, logradouro = :logradouro, bairro = :bairro, cidade = :cidade, estado = :estado, cep = :cep, dataCadastro = NOW(), perfil = :perfil, senha = :senha FROM colaborador WHERE idcolaborador = :idcolaborador";
 
         $sttm = $this->conexao->prepare($sql);
@@ -151,6 +151,18 @@ class ColaboradorService {
         }
     }
 
+    public function populaTabela() {
+      $sql = "SELECT * FROM colaborador";
+
+      $sttm = $this->conexao->prepare($sql);
+
+      try {
+          $sttm->execute();
+        } catch (PDOException $exc) {
+          echo $exc->getTraceAsString();
+        }
+        return $sttm->fetchAll(PDO::FETCH_ASSOC);
+      }
 
 }
 
@@ -159,7 +171,7 @@ echo "<pre>";
 print_r($co);
 echo "</pre>";
 $cos = new ColaboradorService();
-$cos->CadastrarColaborador($co);
+$cos->inserirColaborador($co);
 echo "<pre>";
 print_r($co);
 echo "</pre>";*/
@@ -171,7 +183,7 @@ echo "<pre>";
 print_r($co);
 echo "</pre>";
 $cos = new ColaboradorService();
-$cos->AlterarColaborador($co);
+$cos->alterarColaborador($co);
 echo "<pre>";
 print_r($co);
 echo "</pre>";*/
@@ -184,7 +196,7 @@ echo "<pre>";
 print_r($co);
 echo "</pre>";
 $cos = new ColaboradorService();
-$cos->ExcluirColaborador($co);
+$cos->excluirColaborador($co);
 echo "<pre>";
 print_r($co);
 echo "</pre>";*/
@@ -197,10 +209,17 @@ echo "<pre>";
 print_r($co);
 echo "</pre>";
 $cos = new ColaboradorService();
-$cos->BuscarColaborador($co);
+$cos->buscarColaborador($co);
 echo "<pre>";
 print_r($co);
 echo "</pre>";*/
 // // //
+
+/*$c = new Colaborador();
+$cos = new ColaboradorService();
+$cos->getColaboradorByID(1);
+echo "<pre>";
+print_r($cos->getColaboradorByID(1));
+echo "</pre>";*/
 
 ?>

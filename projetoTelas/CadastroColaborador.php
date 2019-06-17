@@ -1,7 +1,5 @@
 <?php
-  include_once '../Class/colaborador.service.php';
-  //include './cabec.php';
-  //include './rodape.php';
+  include_once 'colaborador.service.php';
   $cos = new ColaboradorService();
 ?>
 
@@ -12,13 +10,15 @@
       <title>Cadastro de Colaborador</title>
       <link rel="stylesheet" href="css/bootstrap.min.css">
       <link rel="stylesheet" href="css/estilo-colaborador.css">
-    </head>
-
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+      </head>
       <body background="img/sapatos2.jpg">
 
 <div class="container">
 
-<form class="form-horizontal" action="../Class/colaborador.controller.php?acao=inserir" method="post" >
+<form class="form-horizontal" action="colaborador.controller.php?acao=inserir" method="post" >
       <fieldset>
     <div class="panel panel-primary">
 </br>
@@ -173,10 +173,11 @@
 </div>
 
 <div class="text-center">
-    <label for="Cadastrar"></label>
-    <button id="Cadastrar" name="Cadastrar" class="btn btn-success" type="submit">Cadastrar</button>
-    <button id="limpar" name="Limpar" class="btn btn-warning" onclick="limpa_formulario()" type="reset">Limpar</button>
-    <button id="Buscar" name="Buscar" class="btn btn-inverse">Buscar</button>
+<label for="Cadastrar"></label>
+<button id="Cadastrar" name="Cadastrar" class="btn btn-success" type="Submit">Cadastrar</button>
+<button id="Buscar" name="Buscar" class="btn btn-inverse">Buscar</button>
+<button id="Alterar" name="Alterar" class="btn btn-warning">Alterar</button>
+<button id="Excluir" name="Excluir" class="btn btn-danger" type="Reset">Excluir</button>
 </div>
 </fieldset>
 </form>
@@ -234,27 +235,12 @@
                                                       <td><?php echo $key['perfil'];?></td>
                                                       <td><?php echo $key['senha'];?></td>
                                                        <td>
-                                                         <button type="button" onclick="carregaModal('<?php echo $key['nome']; ?>',
-                                                                                                      <?php echo $key['cpf']; ?>,
-                                                                                                      <?php echo $key['rg']; ?>,
-                                                                                                      <?php echo $key['sexo']; ?>,
-                                                                                                      <?php echo $key['dataNascimento']; ?>,
-                                                                                                      <?php echo $key['tel']; ?>,
-                                                                                                      <?php echo $key['email']; ?>,
-                                                                                                      <?php echo $key['logradouro']; ?>,
-                                                                                                      <?php echo $key['bairro']; ?>,
-                                                                                                      <?php echo $key['cidade']; ?>,
-                                                                                                      <?php echo $key['estado']; ?>,
-                                                                                                      <?php echo $key['cep']; ?>,
-                                                                                                      <?php echo $key['perfil']; ?>,
-                                                                                                      <?php echo $key['senha']; ?>,
-                                                                                                      <?php echo $key['idcolaborador']; ?>)"
-                                                                        data-target=".bd-example-modal-lg" data-toggle="modal" id="btn-editar" class="btn btn-primary"  >
-                                                                          <img id="editar" src="img/icons8-editar-26.png">
+                                                           <button type="button" id="btn-editar" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
+                                                               <a href="#" > <img id="editar" src="img/icons8-editar-26.png">
                                                            </button>
 
-                                                           <button type="button" id="btn-excluir" class="btn btn-primary" data-toggle="modal">
-                                                               <a href="../Class/colaborador.controller.php?acao=deletar" > <img id="editar" src="img/icons8-excluir-26.png">
+                                                           <button type="button" id="btn-editar" class="btn btn-primary" data-toggle="modal">
+                                                               <a href="#" > <img id="editar" src="img/icons8-excluir-26.png">
                                                            </button>
                                                        </td>
                                                    </tr>
@@ -263,36 +249,43 @@
             </tbody>
           </table>
 
-          <!--   modal inicio-->
-          <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-lg">
-                  <div class="modal-content">
-                      <div class="containerModal">
+          <form action="cadastroCliente.php" method="POST">
+              <button id="topo" name="topo" class="btn btn-danger" type="submit" >Ir para o topo</button>
 
-                          <form class="form-horizontal" id="formModal"  action="../Class/colaborador.controller.php?acao=editar" method="post">
+          </form>
+          </div>
 
-                              <fieldset>
-                                 <div class="panel panel-primary">
-                                  <br/>
-                                  <div class="panel-heading btn-primary">
-                                      <h2>Alterar Produto</h2>
-                                  </div>
+  <script src="js/bootstrap.min.js"></script>
+  <script rel="stylesheet" src="js/estilo-colaborador.js"></script>
 
-                                  <div id="codModal" class="panel-body">
-                                      <h4>Cód:
-                                          <label for="cod" id="divCod"/>
-                                      </h4>
+  <!--                        MODAL-->
 
-                                  </div>
+  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+  <div class="container">
+
+    <form class="form-horizontal" action="/action_page.php">
+        <fieldset>
+    <div class="panel panel-primary">
+    </br>
+        <div class="panel-heading btn-primary"><h2>Alterar Colaborador</h2>
+        </div>
+         <div class="panel-body">
+    <div class="form-group">
 
     <div class="col-md-15 control-label">
             <p class="help-block"><h11>*</h11> Campo Obrigatório </p>
+          </div>
     </div>
 
     <div class="form-row">
     <div class="form-group col-md-8">
       <label for="nome">Nome <h11>*</h11></label>
       <input id="nomeModal" name="nome" placeholder="Digite o Nome" class="form-control" required="" type="text">
+      <script>
+                                                          //document.getElementById('nomeModal').value = "conteudo do banco de dados";
+      </script>
       </div>
     </div>
 
@@ -430,31 +423,12 @@
 
         <div class="text-center">
         <label for="Cadastrar"></label>
-        <button id="Alterar" type="submit" name="Alterar" class="btn btn-warning"> Atualizar </button>
-      </div>
-    </div>
-  </fieldset>
+        <button id="Alterar" name="Alterar" class="btn btn-warning">Alterar</button>
+      </fieldset>
   </form>
 </div>
 </div>
 </div>
 </div>
-
-<!--   modal fim-->
-<form action="cadastroColaborador.php" method="POST">
-    <button name="topo" class="btn btn-danger" type="submit" >Ir para o topo</button>
-
-</form>
-</div>
-
-<!--                        MODAL-->
-
-<script src="js/estilo-colaborador.js"></script>
-
-<script src="js/bootstrap.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-
 </body>
 </html>

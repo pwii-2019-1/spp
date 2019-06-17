@@ -1,6 +1,6 @@
 <?php
 include_once '../Class/produto.service.php';
-//include './cabec.php';
+include './cabec.php';
 $ps = new ProdutoService();
 ?>
 
@@ -8,7 +8,7 @@ $ps = new ProdutoService();
 <html lang="pt-br">
     <head>
         <meta charset="utf-8">
-        <title>Cadastro de Produto</title>
+        <title>Produto</title>
 
 
         <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -22,7 +22,7 @@ $ps = new ProdutoService();
                 <fieldset>
                     <div class="panel panel-primary">
                         </br>
-                        <div class="panel-heading btn-primary"><h2>Cadastro de Produto - SPP</h2>
+                        <div class="panel-heading btn-primary"><h2>Cadastro de Produto</h2>
                         </div>
                         <div class="panel-body">
                             <div class="form-group">
@@ -211,7 +211,7 @@ $ps = new ProdutoService();
                                         data-target=".bd-example-modal-lg" data-toggle="modal" id="btn-editar" class="btn btn-primary"  >
                                     <img id="editar" src="img/icons8-editar-26.png"> 
                                 </button>
-                                <button type="button" id="btn-excluir" class="btn btn-primary">
+                                <button type="button" id="btn-editar" class="btn btn-primary">
                                     <a href="../Class/produto.controller.php?acao=deletar"> <img id="editar" src="img/icons8-excluir-26.png"></a>
                                 </button>
                             </td> 

@@ -13,16 +13,16 @@ class vendaService{
     public function __construct(){
         $this->conexao = Conexao::conectar();
     }
-    
+
     // Metodo para gravar as tabelas vendas e itensVendas simultaneamente no banco de dados.
     public function inserirVenda(Venda $venda){
-        
+
         try {
 
-            $sql = "INSERT INTO venda (idcliente, idcolaborador, descontoTotal, valorTotal, condicaoPgto, dataCompra)" 
+            $sql = "INSERT INTO venda (idcliente, idcolaborador, descontoTotal, valorTotal, condicaoPgto, dataCompra)"
                 . " VALUES (:cliente, :colaborador, :descontoTotal, :valorTotal, :condicaoPgto, NOW())";
 
-            $sttm = $this->conexao->prepare($sql);            
+            $sttm = $this->conexao->prepare($sql);
             $sttm->bindValue(':cliente', $venda->__get('cliente')->__get('codcliente'));
             $sttm->bindValue(':colaborador', $venda->__get('colaborador')->__get('codcolaborador'));
             $sttm->bindValue(':descontoTotal', $venda->__get('descontoTotal'));
@@ -32,18 +32,44 @@ class vendaService{
 
             // pegar o id da venda que acabou de ser inserida no Banco para poder gravar este id no item da venda.
             $idVendaInserida = $this->conexao->lastInsertId();
-            
+
             // Instancia  um objeto da classe ItemVendaService para ser utilizado no laço foreach abaixo.
             $is = new ItemVendaService();
-            
+
             // Percorre o Array para pegar os valores dos atributos e levar para o metodo inserirItemVenda da classe ItemVenda.service
             foreach ($venda->__get('itens') as $item) {
                 $is->inserirItemVenda($item, $idVendaInserida);
             }
-            
+
         } catch (PDOException $exc) {
             echo $exc->getTraceAsString();
         }
+    }
+
+    public function excluirVenda(Venda $venda){
+        $sql = 'DELETE FROM venda WHERE idvenda = :idvenda';
+
+        $sttm = $this->conexao->prepare($sql);
+
+        $sttm->bindValue(':idvenda',$venda->__get('idvenda'));
+
+        try {
+            $sttm->execute();
+            echo 'Venda excluída com sucesso!';
+        } catch (PDOException $exc) {
+            echo $exc->getTraceAsString();
+            echo 'Erro ao excluir!';
+        }
+    }
+    public function populaTabela() {
+        $sql = "SELECT * FROM venda";
+        $sttm = $this->conexao->prepare($sql);
+        try {
+            $sttm->execute();
+        } catch (PDOException $exc) {
+            echo $exc->getTraceAsString();
+        }
+        return $sttm->fetchAll(PDO::FETCH_ASSOC);
     }
 }
 
@@ -52,7 +78,7 @@ class vendaService{
 //----------------------------------------------------------------------------------
 
 // Exemplo do Lucas para compor um objeto a partir da consuta do Banco
-$ps = new ProdutoService();
+/*$ps = new ProdutoService();
 $p = $ps->getProdutoByID(1);
 $p2 = $ps->getProdutoByID(2);
 
@@ -88,7 +114,7 @@ print_r($v);
 echo "</pre>";
 
 $vs = new vendaService();
-$vs->inserirVenda($v);
+$vs->inserirVenda($v);*/
 
 //----------------------------------------------------------------------------------
 

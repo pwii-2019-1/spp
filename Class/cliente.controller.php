@@ -5,7 +5,6 @@ include_once 'conexao.php';
 
 $acao = filter_input(INPUT_GET, 'acao') ? filter_input(INPUT_GET, 'acao') : $acao;
   if ($acao == 'inserir') {
-
     $cliente = new Cliente();
     $cliente->__set('nome', filter_input(INPUT_POST, 'nome'));
     $cliente->__set('cpf', filter_input(INPUT_POST, 'cpf'));
@@ -19,12 +18,28 @@ $acao = filter_input(INPUT_GET, 'acao') ? filter_input(INPUT_GET, 'acao') : $aca
     $cliente->__set('cidade', filter_input(INPUT_POST, 'cidade'));
     $cliente->__set('estado', filter_input(INPUT_POST, 'estado'));
     $cliente->__set('cep', filter_input(INPUT_POST, 'cep'));
-
     $clienteService = new ClienteService();
     $clienteService->inserirCliente($cliente);
-    header('Location: ../projeto/cadastroCliente.php#topo');
-  } else if ($acao == 'excluir') {
-      $cs = new ClienteService();
+    header('Location: ../projetoTelas/cadastroCliente.php#topo');
+  } else if ($acao == 'editar') {
+    $cliente = new Cliente();
+    $cliente->__set('codProd', filter_input(INPUT_GET, 'id'));
+    $cliente->__set('nome', filter_input(INPUT_POST, 'nomeModal'));
+    $cliente->__set('cpf', filter_input(INPUT_POST, 'cpfModal'));
+    $cliente->__set('rg', filter_input(INPUT_POST, 'rgModal'));
+    $cliente->__set('sexo', filter_input(INPUT_POST, 'sexoModal'));
+    $cliente->__set('dataNascimento', filter_input(INPUT_POST, 'dataNascimentoModal'));
+    $cliente->__set('tel', filter_input(INPUT_POST, 'telModal'));
+    $cliente->__set('email', filter_input(INPUT_POST, 'emailModal'));
+    $cliente->__set('logradouro', filter_input(INPUT_POST, 'logradouroModal'));
+    $cliente->__set('bairro', filter_input(INPUT_POST, 'bairroModal'));
+    $cliente->__set('cidade', filter_input(INPUT_POST, 'cidadeModal'));
+    $cliente->__set('estado', filter_input(INPUT_POST, 'estadoModal'));
+    $cliente->__set('cep', filter_input(INPUT_POST, 'cepModal'));
+    echo $cliente->__get('sexo');
+    $cs = new ClienteService();
+    $cs->alterarCliente($cliente);
+    header('Location: ../projetoTelas/cadastroCliente.php');
 }
 
 ?>
