@@ -155,10 +155,14 @@ $ps = new ProdutoService();
 
 
                                 <button id="limpar" name="Limpar" class="btn btn-warning" onclick="limpa_formulario()" type="reset">Limpar</button>
-                                <div id="search">
-                                    <label >Buscar: </label>
-                                    <input type="text" id="inputText" alt="lista-clientes" onkeyup="buscaTable()"  placeholder="buscar..." />
-                                </div>
+				<div class="input-group mb-3">
+				  <div id="inputTextDiv" class="input-group-prepend">
+				    <span class="input-group-text" id="inputGroup-sizing-default">Buscar</span>
+				  </div>
+                                    <input type="text" id="inputText" class="form-control" salt="lista-clientes" onkeyup="buscaTable()" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Digite..." />
+
+				</div>
+                                
                             </div>
                         </div></div>
                 </fieldset>
