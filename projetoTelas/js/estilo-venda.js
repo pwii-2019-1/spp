@@ -86,4 +86,3 @@ function habilita(i) {
       document.getElementById(i).disabled = false;
   }
 
-}
