@@ -1,3 +1,4 @@
+
 $(window).load(function () {
     var height = window.innerHeight,
             x = 0, y = height / 2,

@@ -25,7 +25,7 @@ h11 {
 .containerModal {
     background-color: #C1CDCD;
     margin-top: -5px;
-    
+
 }
 .panel-heading {
     text-align: center;
@@ -60,16 +60,21 @@ h11 {
     width: 50px;
 }
 
-#codModal{
+#codModal {
     margin-left: 3px;
     position: initial;
 }
 
-.form-row{
+.form-row {
     margin-left: 5px;
 }
+<<<<<<< HEAD
 
 #search {
     margin-left: 76%;
     color: #ff0000;
+=======
+#modal{
+    margin-top: 3px;
+>>>>>>> c570835bc7466bca4d1168d45e53a05a9eb0d188
 }

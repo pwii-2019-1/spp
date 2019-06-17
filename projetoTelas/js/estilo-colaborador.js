@@ -1,6 +1,6 @@
 function limpa_formulario() {
           //Limpa valores do formulário.
-          document.getElementById('nome').value=("");
+          document.getElementById('nome').value=("Digite o nome");
           document.getElementById('cpf').value=("");
           document.getElementById('rg').value=("");
           document.getElementById('sexo').value=("");
@@ -10,9 +10,9 @@ function limpa_formulario() {
           document.getElementById('logradouro').value=("");
           document.getElementById('bairro').value=("");
           document.getElementById('cidade').value=("");
-          document.getElementById('estado').value=("");
+          document.getElementById('estado').value=("Escolher...");
           document.getElementById('cep').value=("");
-          document.getElementById('perfil').value=("");
+          document.getElementById('perfil').value=("Escolher...");
           document.getElementById('senha').value=("");
   }
 
@@ -130,4 +130,37 @@ function showhide() {
 else if(idade()<18) {
   div.style.display = "inline";
   }
+}
+
+function carregaModal(nome, cpf, rg, sexo, dataNascimento, tel, email, logradouro, bairro, cidade, estado, cep, perfil, senha, idcolaborador) {
+    alteraLabel(id);
+    linkForm(id);
+    document.getElementById('nomeModal').value = nome;
+    document.getElementById('numeracaoModal').value = num;
+
+    if (gen === 'M') {
+        document.getElementById('sexoModalM').checked = true;
+    } else if (gen === 'F') {
+        document.getElementById('sexoModalF').checked = true;
+    }
+    document.getElementById('dataNascimentoModal').value = dataNascimento;
+    document.getElementById('telModal').value = tel;
+    document.getElementById('emailModal').value = email;
+    document.getElementById('logradouroModal').value = logradouro;
+    document.getElementById('bairroModal').value = bairro;
+    document.getElementById('cidadeModal').value = cidade;
+    document.getElementById('estadoModal').value = estado;
+    document.getElementById('cepModal').value = cep;
+    document.getElementById('perfilModal').value = perfil;
+    document.getElementById('senhaModal').value = senha;
+//    document.getElementById('linkEditarModal').href = "../Class/colaborador.controller.php?acao=editar&id="+id;
+
+}
+
+function linkForm(id){
+    document.getElementById('formModal').action = "../Class/colaborador.controller.php?acao=editar&id="+id;
+}
+
+function alteraLabel(id) {
+  document.getElementById("divCod").innerHTML = id;
 }
