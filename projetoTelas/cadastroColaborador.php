@@ -1,8 +1,9 @@
 <?php
   include_once '../Class/colaborador.service.php';
-  //include './cabec.php';
+  include './cabec.php';
   //include './rodape.php';
   $cos = new ColaboradorService();
+  
 ?>
 
 <!DOCTYPE html>

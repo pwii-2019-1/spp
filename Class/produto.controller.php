@@ -26,8 +26,11 @@ if ($acao == 'inserir') {
     $produto->__set('marca', filter_input(INPUT_POST, 'marcaModal'));
     $produto->__set('valorUnitario', filter_input(INPUT_POST, 'valorunitModal'));
     $produto->__set('saldoProduto', filter_input(INPUT_POST, 'saldoprodModal'));
-    echo $produto->__get('genero');
     $ps = new ProdutoService();
     $ps->alterarProduto($produto);
+    header('Location: ../projetoTelas/cadastroProduto.php');
+} else if ($acao == 'deletar') {
+    $ps = new ProdutoService();
+    $ps->deletarProduto(filter_input(INPUT_GET, 'id'));
     header('Location: ../projetoTelas/cadastroProduto.php');
 }

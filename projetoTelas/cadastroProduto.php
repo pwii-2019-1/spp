@@ -215,7 +215,7 @@ $ps = new ProdutoService();
                                     <img id="editar" src="img/icons8-editar-26.png"> 
                                 </button>
                                 <button type="button" id="btn-editar" class="btn btn-primary">
-                                    <a href="../Class/produto.controller.php?acao=deletar"> <img id="editar" src="img/icons8-excluir-26.png"></a>
+                                    <a href="../Class/produto.controller.php?acao=deletar&id=<?php echo $key['idproduto']; ?>"> <img id="editar" src="img/icons8-excluir-26.png"></a>
                                 </button>
                             </td> 
                         </tr>

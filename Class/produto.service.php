@@ -1,11 +1,16 @@
 <?php
+
 include_once 'produto.model.php';
 include_once 'conexao.php';
+
 class ProdutoService {
+
     private $conexao;
+
     public function __construct() {
         $this->conexao = Conexao::conectar();
     }
+
     public function inserirProduto(Produto $produto) {
         $sql = "INSERT INTO produto (cor,datacadastro,descricao,genero,marca,numeracao,saldoProduto,valorUnitario)"
                 . " VALUES (:cor, NOW(), :desc, :gen,  :marca, :num, :saldo, :valor)";
@@ -23,6 +28,7 @@ class ProdutoService {
             echo $exc->getTraceAsString();
         }
     }
+
     public function alterarProduto(Produto $produto) {
         $sql = "UPDATE produto SET descricao=:desc, numeracao=:num, genero=:gen, cor=:cor, marca=:marca,"
                 . "valorUnitario=:valor, saldoProduto=:saldo WHERE idproduto=:id;";
@@ -36,21 +42,13 @@ class ProdutoService {
         $sttm->bindValue(':saldo', $produto->__get('saldoProduto'));
         $sttm->bindValue(':valor', $produto->__get('valorUnitario'));
         try {
-<<<<<<< HEAD
-=======
-
->>>>>>> c570835bc7466bca4d1168d45e53a05a9eb0d188
             $sttm->execute();
         } catch (PDOException $exc) {
             echo $exc->getTraceAsString();
         }
     }
-<<<<<<< HEAD
 
     public function getProdutoByID($id) {
-=======
-    public  function getProdutoByID($id) {
->>>>>>> c570835bc7466bca4d1168d45e53a05a9eb0d188
         $sql = "SELECT * FROM produto WHERE idproduto = :id";
         $sttm = $this->conexao->prepare($sql);
         $sttm->bindValue(':id', $id);
@@ -72,16 +70,19 @@ class ProdutoService {
         $produto->__set('datacadastro', $resul[0]['datacadastro']);
         return $produto;
     }
-    public function deleteProduto($id) {
-        $sql = "DELETE FROM produto WHERE id=:id";
+
+    public function deletarProduto($id) {
+        $sql = "DELETE FROM produto WHERE idproduto = :id";
         $sttm = $this->conexao->prepare($sql);
         $sttm->bindValue(':id', $id);
         try {
             $sttm->execute();
+            echo "$id";
         } catch (PDOException $exc) {
             echo $exc->getTraceAsString();
         }
     }
+
     public function populaTabela() {
         $sql = "SELECT * FROM produto";
         $sttm = $this->conexao->prepare($sql);
@@ -92,4 +93,5 @@ class ProdutoService {
         }
         return $sttm->fetchAll(PDO::FETCH_ASSOC);
     }
+
 }

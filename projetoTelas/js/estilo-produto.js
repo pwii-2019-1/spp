@@ -114,6 +114,11 @@ function linkForm(id){
 
 }
 
+//function linkBtnExcluir(id){
+//    document.getElementById('btn-excluir').action = "../Class/produto.controller.php?acao=excluir&id="+id;
+//
+//}
+
 function alteraLabel(id) {
   document.getElementById("divCod").innerHTML = id;
 

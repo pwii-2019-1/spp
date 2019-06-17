@@ -27,13 +27,16 @@
 
             <nav class="nav navbar-collapse">
                 <ul>
-                    <li><a href="#"><img id="sppLogo" src="img/spp.png" /></a></li>
-                    <li><a href="cadastroProduto.php">Produtos</a></li>
-                    <li><a href="telaVendas.php">Vendas</a></li>
+                    <div id="ulign">
+                        <li><a href="#"><img id="sppLogo" src="img/spp.png" /></a></li>
+                        <li><a href="cadastroProduto.php">Produtos</a></li>
+                        <li><a href="telaVendas.php">Vendas</a></li>
 
-                    <li><a href="cadastroColaborador.php">Funcionários</a></li>
-                    <li><a href="cadastroCliente.php">Clientes</a></li>
+                        <li><a href="cadastroColaborador.php">Funcionários</a></li>
+                        <li><a href="cadastroCliente.php">Clientes</a></li>
 
+
+                    </div>
                 </ul>
             </nav>
         </div>

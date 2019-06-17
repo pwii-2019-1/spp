@@ -1,29 +1,36 @@
-body { margin: 0; padding: 0; }
-nav { width: 100%; background: #515f6e; float: left; padding: 10px 0px; }
+body { margin: 0; padding: 0;font-family: Quarter; }
+nav { width: 100%; background: #515f6e; float: left; padding: 0px 0px; }
 nav ul li { list-style: none; display: inline; }
-nav ul li a { padding: 10px; color: #ffffff; font: 1.3em Tahoma; }
+nav ul li a { padding: 10px; color: #ffffff; font: 1.3em sans; }
 #menu, .menu {	display: none; }
+
 
 @media screen and (max-width: 480px) {
 
-	nav { display: none; }
-	#menu:checked ~ nav {
-		display: block;
-	}
-	.menu { display: block; background: #ccc; padding: 10px; float: right; }
-	nav ul { margin: 0; padding: 0; }
-	nav ul li { display: block; padding: 10px 0px; }
-	nav ul li a { width: 100%; float: left; text-align: center; }
+    nav { display: none; }
+    #menu:checked ~ nav {
+        display: block;
+    }
+    .menu { display: block; background: #ccc; padding: 10px; float: right; }
+    nav ul { margin: 0; padding: 0; }
+    nav ul li { display: block; padding: 0px 0px; }
+    nav ul li a { width: 100%; float: left; text-align: center; }
 
 }
-#header {
+#ulign {
+    margin-top: 12px;
+}
+
+#header {font-family:  Quarter;
     margin-left: 0px;
     position: relative;
     top: -69px;
     margin-top: 0px;
     margin-bottom: 0px;
+    max-height:  50px;
 }
 
 #sppLogo {
-    width: 90px;
+    width: 80px;
+    margin-left: -30px;
 }

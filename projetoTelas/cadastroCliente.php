@@ -1,6 +1,6 @@
 <?php
   include_once '../Class/cliente.service.php';
-  //include './cabec.php';
+  include './cabec.php';
   //include './rodape.php';
   $cs = new ClienteService();
 ?>
