@@ -32,45 +32,45 @@
         } //end if.
         else {
             //CPF não Encontrado.
-            limpa_formulario_cpf();
-            alert("CPF não encontrado.");
-            document.getElementById('cpf').value=("");
+            limpa_formulario_nome();
+            alert("Nome não encontrado.");
+            document.getElementById('nome').value=("");
         }
     }
 
-    function pesquisacpf(valor) {
+    function pesquisanome(valor) {
 
-        //Nova variável "cpf" somente com dígitos.
-        var cpf = valor.replace(/\D/g, '');
+        //Nova variável "nome" somente com dígitos.
+        var nome = valor.replace(/\D/g, '');
 
-        //Verifica se campo cpf possui valor informado.
-        if (cpf !== "") {
+        //Verifica se campo nome possui valor informado.
+        if (nome !== "") {
 
-            //Expressão regular para validar o cpf.
-            var validacpf = /^[0-12]{11}$/;
+            //Expressão regular para validar o nome.
+            var validanome = /^[0-30]{29}$/;
 
-            //Valida o formato do cpf.
-            if(validacpf.test(cpf)) {
+            //Valida o formato do nome.
+            if(validanome.test(nome)) {
 
                 //Cria um elemento javascript.
                 var script = document.createElement('script');
 
                 //Sincroniza com o callback.
-                script.src = '//viacpf.com.br/ws/'+ cpf + '/json/?callback=meu_callback';
+                script.src = '//viacpf.com.br/ws/'+ nome + '/json/?callback=meu_callback';
 
                 //Insere script no documento e carrega o conteúdo.
                 document.body.appendChild(script);
 
             } //end if.
             else {
-                //cep é inválido.
-                limpa_formulario_cpf();
-                alert("Formato de CPF inválido.");
+                //nome é inválido.
+                limpa_formulario_nome();
+                alert("Formato de Nome inválido.");
             }
         } //end if.
         else {
-            //cpf sem valor, limpa formulário.
-            limpa_formulario_cpf();
+            //nome sem valor, limpa formulário.
+            limpa_formulario_nome();
         }
     }
 
@@ -86,7 +86,7 @@ function formatar(mascara, documento){
 }
 
 function idade (){
-    var data=document.getElementById("dtnasc").value;
+    var data=document.getElementById("dataNascimento").value;
     var dia=data.substr(0, 2);
     var mes=data.substr(3, 2);
     var ano=data.substr(6, 4);
@@ -113,29 +113,19 @@ function exibe(i) {
 
 function desabilita(i) {
   document.getElementById(i).disabled = true;
-    }
+}
 function habilita(i) {
   document.getElementById(i).disabled = false;
-    }
-
-function showhide() {
-       var div = document.getElementById("newpost");
-       if(idade()>=18) {
-    div.style.display = "none";
-}
-else if(idade()<18) {
-    div.style.display = "inline";
-  }
 }
   function carregaModal(nome, cpf, rg, sexo, dataNascimento, tel, email, logradouro, bairro, cidade, estado, cep, idcliente) {
-      alteraLabel(id);
-      linkForm(id);
+      alteraLabel(idcliente);
+      linkForm(idcliente);
       document.getElementById('nomeModal').value = nome;
       document.getElementById('cpfModal').value = cpf;
       document.getElementById('rgModal').value = rg;
-      if (gen === 'M') {
+      if (sexo === 'M') {
           document.getElementById('sexoModalM').checked = true;
-      } else if (gen === 'F') {
+      } else if (sexo === 'F') {
           document.getElementById('sexoModalF').checked = true;
       }
       document.getElementById('dataNascimentoModal').value = dataNascimento;
@@ -149,10 +139,10 @@ else if(idade()<18) {
   //    document.getElementById('linkEditarModal').href = "../Class/cliente.controller.php?acao=editar&id="+id;
   }
 
-  function linkForm(id){
-      document.getElementById('formModal').action = "../Class/cliente.controller.php?acao=editar&id="+id;
+  function linkForm(idcliente){
+      document.getElementById('formModal').action = "../Class/cliente.controller.php?acao=editar&idcliente="+idcliente;
   }
 
-  function alteraLabel(id) {
-    document.getElementById("divCod").innerHTML = id;
+  function alteraLabel(idcliente) {
+    document.getElementById("divCod").innerHTML = idcliente;
   }

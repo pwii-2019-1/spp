@@ -1,0 +1,31 @@
+body {
+    background-image: url(../img/sapatos2.jpg);
+    padding-top: 80px;
+    padding-bottom: 80px;
+    background-color: #eee;
+}
+
+button {
+    width: 15%;
+    margin-bottom: 15px;
+}
+
+h11 {
+    color:red;
+}
+
+.panel-heading{
+    font-size:150%;
+}
+
+.container {
+    background-color: #C1CDCD;
+}
+
+.panel-heading {
+    text-align: center;
+}
+
+.help-block {
+    text-align: right;
+}

@@ -1,6 +1,6 @@
 function limpa_formulario() {
-          //Limpa valores do formulário.
-          document.getElementById('nome').value=("Digite o nome");
+          //Limpa valores do formulário de cep.
+          document.getElementById('nome').value=("");
           document.getElementById('cpf').value=("");
           document.getElementById('rg').value=("");
           document.getElementById('sexo').value=("");
@@ -10,10 +10,8 @@ function limpa_formulario() {
           document.getElementById('logradouro').value=("");
           document.getElementById('bairro').value=("");
           document.getElementById('cidade').value=("");
-          document.getElementById('estado').value=("Escolher...");
+          document.getElementById('estado').value=("");
           document.getElementById('cep').value=("");
-          document.getElementById('perfil').value=("Escolher...");
-          document.getElementById('senha').value=("");
   }
 
   function meu_callback(conteudo) {
@@ -31,8 +29,6 @@ function limpa_formulario() {
           document.getElementById('cidade').value=(conteudo.cidade);
           document.getElementById('estado').value=(conteudo.estado);
           document.getElementById('cep').value=(conteudo.cep);
-          document.getElementById('perfil').value=(conteudo.perfil);
-          document.getElementById('senha').value=(conteudo.senha);
       } //end if.
       else {
           //Nome não Encontrado.
@@ -79,16 +75,17 @@ function limpa_formulario() {
   }
 
 function formatar(mascara, documento){
-  var i = documento.value.length;
-  var saida = mascara.substring(0,1);
-  var texto = mascara.substring(i);
+var i = documento.value.length;
+var saida = mascara.substring(0,1);
+var texto = mascara.substring(i);
 
 if (texto.substring(0,1) != saida) {
           documento.value += texto.substring(0,1);
-        }
 }
 
-function idade () {
+}
+
+function idade (){
   var data=document.getElementById("dataNascimento").value;
   var dia=data.substr(0, 2);
   var mes=data.substr(3, 2);
@@ -111,46 +108,16 @@ return idade;
 }
 
 function exibe(i) {
-  document.getElementById(i).readOnly= true;
+document.getElementById(i).readOnly= true;
 }
 
 function desabilita(i) {
-   document.getElementById(i).disabled = true;
+document.getElementById(i).disabled = true;
 }
 
-function habilita(i) {
-    document.getElementById(i).disabled = false;
-}
-
-function carregaModal(nome, cpf, rg, sexo, dataNascimento, tel, email, logradouro, bairro, cidade, estado, cep, perfil, senha, idcolaborador) {
-    alteraLabel(idcolaborador);
-    linkForm(idcolaborador);
-    document.getElementById('nomeModal').value = nome;
-    document.getElementById('cpfModal').value = cpf;
-    document.getElementById('rgModal').value = rg;
-    if (sexo === 'M') {
-        document.getElementById('sexoModalM').checked = true;
-    } else if (sexo === 'F') {
-        document.getElementById('sexoModalF').checked = true;
-    }
-    document.getElementById('dataNascimentoModal').value = dataNascimento;
-    document.getElementById('telModal').value = tel;
-    document.getElementById('emailModal').value = email;
-    document.getElementById('logradouroModal').value = logradouro;
-    document.getElementById('bairroModal').value = bairro;
-    document.getElementById('cidadeModal').value = cidade;
-    document.getElementById('estadoModal').value = estado;
-    document.getElementById('cepModal').value = cep;
-    document.getElementById('perfilModal').value = perfil;
-    document.getElementById('pwdModal').value = senha;
-//    document.getElementById('linkEditarModal').href = "../Class/colaborador.controller.php?acao=editar&id="+id;
-
-}
-
-function linkForm(idcolaborador){
-    document.getElementById('formModal').action = "../Class/colaborador.controller.php?acao=editar&idcolaborador="+idcolaborador;
-}
-
-function alteraLabel(idcolaborador) {
-  document.getElementById("divCod").innerHTML = idcolaborador;
+//function habilita(i) {
+//document.getElementById(i).disabled = false;
+//}
+function carregaModal(idcliente, valor) {
+    document.getElementById(idcliente).value = valor;
 }

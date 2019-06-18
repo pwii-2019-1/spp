@@ -3,20 +3,18 @@
   include './cabec.php';
   //include './rodape.php';
   $cos = new ColaboradorService();
-  
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
       <head>
       <meta charset="utf-8">
-      <title>Cadastro de Colaborador</title>
+      <title>Colaborador</title>
       <link rel="stylesheet" href="css/bootstrap.min.css">
       <link rel="stylesheet" href="css/estilo-colaborador.css">
     </head>
 
-      <body background="img/sapatos2.jpg">
-
+    <body>
 <div class="container">
 
 <form class="form-horizontal" action="../Class/colaborador.controller.php?acao=inserir" method="post" >
@@ -24,7 +22,7 @@
     <div class="panel panel-primary">
 </br>
 
-<div class="panel-heading btn-primary"><h2>Cadastro de Colaborador - SPP</h2>
+<div class="panel-heading btn-primary"><h2>Cadastro de Colaborador</h2>
 </div>
  <div class="panel-body">
 <div class="form-group">
@@ -53,18 +51,18 @@
 </div>
 
 <div class="form-row">
-<div class="form-group col-md-4">
-<label for="radios">Sexo <h11>*</h11></label>
-</br>
-<label required="" class="radio-inline" for="radios-0" >
-  <input name="sexo" id="sexo" value="feminino" type="radio" required>
-  Feminino
-</label>
-<label class="radio-inline" for="radios-1">
-  <input name="sexo" id="sexo" value="masculino" type="radio">
-  Masculino
-</label>
-</div>
+    <div class="form-group col-md-4">
+        <label for="radios">Sexo </label>
+        </br>
+        <label class="radio-inline" for="radios-0" >
+            <input name="genero" id="sexo" value="F" type="radio">
+            Feminino
+        </label>
+        <label class="radio-inline" for="radios-1">
+            <input name="genero" id="sexo" value="M" type="radio">
+            Masculino
+        </label>
+    </div>
 <div class="form-group col-md-4">
 <label for="dataNasc">Data de Nascimento <h11>*</h11></label>
 <input id="dataNascimento" name="dataNascimento" placeholder="DD/MM/AAAA" class="form-control" required="" type="text" maxlength="10" OnKeyPress="formatar('##/##/####', this)" onBlur="showhide()">
@@ -177,8 +175,14 @@
     <label for="Cadastrar"></label>
     <button id="Cadastrar" name="Cadastrar" class="btn btn-success" type="submit">Cadastrar</button>
     <button id="limpar" name="Limpar" class="btn btn-warning" onclick="limpa_formulario()" type="reset">Limpar</button>
-    <button id="Buscar" name="Buscar" class="btn btn-inverse">Buscar</button>
+<div class="input-group mb-3">
+<div id="inputTextDiv" class="input-group-prepend">
+<span class="input-group-text" id="inputGroup-sizing-default">Buscar</span>
 </div>
+        <input type="text" id="inputText" class="form-control" salt="lista-clientes" onkeyup="buscaTable()" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Digite..." />
+      </div>
+      </div>
+      </div></div>
 </fieldset>
 </form>
 </div>
@@ -193,7 +197,7 @@
     <table class="table table-dark  table-striped table-hover" >
 
         <thead>
-            <tr>
+            <tr class="tr">
                 <th scope="col">Código</th>
                 <th scope="col">Nome</th>
                 <th scope="col">CPF</th>
@@ -213,7 +217,7 @@
                 <th scope="col">Ação</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="tbody">
                                            <?php
                                            foreach ($cos->populaTabela() as $key) {
                                            ?>
@@ -236,36 +240,35 @@
                                                       <td><?php echo $key['senha'];?></td>
                                                        <td>
                                                          <button type="button" onclick="carregaModal('<?php echo $key['nome']; ?>',
-                                                                                                      <?php echo $key['cpf']; ?>,
-                                                                                                      <?php echo $key['rg']; ?>,
-                                                                                                      <?php echo $key['sexo']; ?>,
-                                                                                                      <?php echo $key['dataNascimento']; ?>,
-                                                                                                      <?php echo $key['tel']; ?>,
-                                                                                                      <?php echo $key['email']; ?>,
-                                                                                                      <?php echo $key['logradouro']; ?>,
-                                                                                                      <?php echo $key['bairro']; ?>,
-                                                                                                      <?php echo $key['cidade']; ?>,
-                                                                                                      <?php echo $key['estado']; ?>,
-                                                                                                      <?php echo $key['cep']; ?>,
-                                                                                                      <?php echo $key['perfil']; ?>,
-                                                                                                      <?php echo $key['senha']; ?>,
+                                                                                                      '<?php echo $key['cpf']; ?>',
+                                                                                                      '<?php echo $key['rg']; ?>',
+                                                                                                      '<?php echo $key['sexo']; ?>',
+                                                                                                      '<?php echo $key['dataNascimento']; ?>',
+                                                                                                      '<?php echo $key['tel']; ?>',
+                                                                                                      '<?php echo $key['email']; ?>',
+                                                                                                      '<?php echo $key['logradouro']; ?>',
+                                                                                                      '<?php echo $key['bairro']; ?>',
+                                                                                                      '<?php echo $key['cidade']; ?>',
+                                                                                                      '<?php echo $key['estado']; ?>',
+                                                                                                      '<?php echo $key['cep']; ?>',
+                                                                                                      '<?php echo $key['perfil']; ?>',
+                                                                                                      '<?php echo $key['senha']; ?>',
                                                                                                       <?php echo $key['idcolaborador']; ?>)"
-                                                                        data-target=".bd-example-modal-lg" data-toggle="modal" id="btn-editar" class="btn btn-primary"  >
-                                                                          <img id="editar" src="img/icons8-editar-26.png">
-                                                           </button>
+                                                                                                      data-target=".bd-example-modal-lg" data-toggle="modal" id="btn-editar" class="btn btn-primary"  >
+                                                                                                  <img id="editar" src="img/icons8-editar-26.png">
+                                                                                              </button>
+                                                                                              <button type="button" id="btn-editar" class="btn btn-primary">
+                                                                                                  <a href="../Class/colaborador.controller.php?acao=deletar&idcolaborador=<?php echo $key['idcolaborador']; ?>"> <img id="editar" src="img/icons8-excluir-26.png"></a>
+                                                                                              </button>
+                                                                                          </td>
+                                                                                      </tr>
+                                                                                  <?php } ?>
+                                                                              </tbody>
 
-                                                           <button type="button" id="btn-excluir" class="btn btn-primary" data-toggle="modal">
-                                                               <a href="../Class/colaborador.controller.php?acao=deletar" > <img id="editar" src="img/icons8-excluir-26.png">
-                                                           </button>
-                                                       </td>
-                                                   </tr>
-                                           <?php } ?>
-
-            </tbody>
-          </table>
+                                                                          </table>
 
           <!--   modal inicio-->
-          <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+          <div id="modal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-lg">
                   <div class="modal-content">
                       <div class="containerModal">
@@ -276,7 +279,7 @@
                                  <div class="panel panel-primary">
                                   <br/>
                                   <div class="panel-heading btn-primary">
-                                      <h2>Alterar Produto</h2>
+                                      <h2>Alterar Colaborador</h2>
                                   </div>
 
                                   <div id="codModal" class="panel-body">
@@ -286,44 +289,40 @@
 
                                   </div>
 
-    <div class="col-md-15 control-label">
-            <p class="help-block"><h11>*</h11> Campo Obrigatório </p>
-    </div>
-
     <div class="form-row">
     <div class="form-group col-md-8">
       <label for="nome">Nome <h11>*</h11></label>
-      <input id="nomeModal" name="nome" placeholder="Digite o Nome" class="form-control" required="" type="text">
+      <input id="nomeModal" name="nomeModal" placeholder="Digite o Nome" class="form-control" required="" type="text">
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group col-md-4">
       <label for="cpf">CPF <h11>*</h11></label>
-      <input id="cpf" name="cpf" placeholder="000.000.000-00" class="form-control" required="" type="text" maxlength="14" OnKeyPress="formatar('###.###.###-##', this)">
+      <input id="cpfModal" name="cpfModal" placeholder="000.000.000-00" class="form-control" required="" type="text" maxlength="14" OnKeyPress="formatar('###.###.###-##', this)">
       </div>
       <div class="form-group col-md-4">
       <label for="rg">RG <h11>*</h11></label>
-      <input id="rg" name="rg" placeholder="Digite o RG" class="form-control" required="" type="text">
+      <input id="rgModal" name="rgModal" placeholder="Digite o RG" class="form-control" required="" type="text">
       </div>
     </div>
 
     <div class="form-row">
-      <div class="form-group col-md-4">
-      <label for="radios">Sexo <h11>*</h11></label>
-    </br>
-        <label required="" class="radio-inline" for="radios-0" >
-          <input name="sexo" id="sexo" value="feminino" type="radio" required>
-          Feminino
-        </label>
-        <label class="radio-inline" for="radios-1">
-          <input name="sexo" id="sexo" value="masculino" type="radio">
-          Masculino
-        </label>
-      </div>
+        <div class="form-group col-md-4">
+            <label for="radios">Sexo </label>
+            </br>
+            <label class="radio-inline" for="radios-0" >
+                <input name="sexoModal" id="sexoModalF" value="F" type="radio" />
+                Feminino
+            </label>
+            <label class="radio-inline" for="radios-1">
+                <input name="sexoModal" id="sexoModalM"  value="M"type="radio" />
+                Masculino
+            </label>
+        </div>
       <div class="form-group col-md-4">
       <label for="dataNasc">Data de Nascimento <h11>*</h11></label>
-      <input id="dataNascimento" name="dataNascimento" placeholder="DD/MM/AAAA" class="form-control" required="" type="text" maxlength="10" OnKeyPress="formatar('##/##/####', this)" onBlur="showhide()">
+      <input id="dataNascimentoModal" name="dataNascimentoModal" placeholder="DD/MM/AAAA" class="form-control" required="" type="text" maxlength="10" OnKeyPress="formatar('##/##/####', this)" onBlur="showhide()">
       </div>
     </div>
 
@@ -332,13 +331,13 @@
       <label for="telefone">Telefone <h11>*</h11></label>
         <div class="input-group">
           <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-          <input id="tel" name="tel" class="form-control" placeholder="XX XXXXX-XXXX" required="" type="text" maxlength="13" OnKeyPress="formatar('## #####-####', this)">
+          <input id="telModal" name="telModal" class="form-control" placeholder="XX XXXXX-XXXX" required="" type="text" maxlength="13" OnKeyPress="formatar('## #####-####', this)">
         </div>
       </div>
     <div class="form-group col-md-4">
       <label for="email">Email </label>
           <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-          <input id="email" name="email" class="form-control" placeholder="email@email.com" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" >
+          <input id="emailModal" name="emailModal" class="form-control" placeholder="email@email.com" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" >
         </div>
       </div>
     </div>
@@ -352,29 +351,29 @@
       <div class="form-row">
         <div class="form-group col-md-4">
             <span class="input-group-addon">Logradouro <h11>*</h11></span>
-            <input id="logradouro" name="logradouro" class="form-control" placeholder="Digite o Logradouro" required="" type="text">
+            <input id="logradouroModal" name="logradouroModal" class="form-control" placeholder="Digite o Logradouro" required="" type="text">
           </div>
       <div class="form-group col-md-4">
         <label for="cep">CEP</label>
-        <input id="cep" name="cep" class="form-control" placeholder="00.000-000" type="search" maxlength="10" OnKeyPress="formatar('##.###-###', this)">
+        <input id="cepModal" name="cepModal" class="form-control" placeholder="00.000-000" type="search" maxlength="10" OnKeyPress="formatar('##.###-###', this)">
         </div>
       </div>
 
       <div class="form-row">
       <div class="form-group col-md-4">
           <span class="input-group-addon">Bairro <h11>*</h11></span>
-          <input id="bairro" name="bairro" class="form-control" placeholder="Digite o bairro" required="" type="text">
+          <input id="bairroModal" name="bairroModal" class="form-control" placeholder="Digite o bairro" required="" type="text">
       </div>
       <div class="form-group col-md-4">
       <label for="prependedtext"></label>
           <span class="input-group-addon">Cidade <h11>*</h11></span>
-          <input id="cidade" name="cidade" class="form-control" placeholder="Digite a Cidade" required="" type="text">
+          <input id="cidadeModal" name="cidadeModal" class="form-control" placeholder="Digite a Cidade" required="" type="text">
       </div>
         </div>
       <div class="form-row">
       <div class="form-group col-md-4">
         <label for="estado">Estado <h11>*</h11></label>
-        <select id="estado" name="estado" class="form-control">
+        <select id="estadoModal" name="estadoModal" class="form-control">
           <option selected>Selecione...</option>
           <option>AC</option>
           <option>AL</option>
@@ -416,7 +415,7 @@
       <div class="form-row">
       <div class="form-group col-md-4">
         <label for="tipoColaborador">Perfil do novo colaborador <h11>*</h11></label>
-        <select id="tipoColaborador" name="tipoColaborador" class="form-control">
+        <select id="tipoColaboradorModal" name="tipoColaboradorModal" class="form-control">
           <option selected>Selecione...</option>
           <option>Administrador</option>
           <option>Vendedor</option>
@@ -425,7 +424,7 @@
       </div>
       <div class="form-group col-md-4">
         <label for="password">Senha <h11>*</h11></label>
-        <input type="password" class="form-control" id="pwd" placeholder="Digite a senha" name="pwd" required >
+        <input type="password" class="form-control" id="pwdModal" placeholder="Digite a senha" name="pwdModal" >
       </div>
       </div>
 
@@ -451,11 +450,13 @@
 <!--                        MODAL-->
 
 <script src="js/estilo-colaborador.js"></script>
-
+<script src="js/buscaEmTabela.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.quicksearch/2.3.1/jquery.quicksearch.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 </body>
 </html>

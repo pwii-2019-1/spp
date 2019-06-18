@@ -16,7 +16,7 @@
                 <fieldset>
                     <div class="panel panel-primary">
                         </br>
-                        <div class="panel-heading btn-primary"><h2>Vendas</h2>
+                        <div class="panel-heading btn-primary"><h2>SPP- Sistema de Pesquisa de Produto</h2>
                         </div>
                         <div class="panel-body">
                             <div class="form-group">

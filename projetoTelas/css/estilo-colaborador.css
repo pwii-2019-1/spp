@@ -1,7 +1,6 @@
 body {
-    margin-top: 28px;
     background-image: url(../img/sapatos2.jpg);
-    padding-top: 40px;
+    padding-top: 68px;
     padding-bottom: 40px;
     background-color: #eee;
 }
@@ -23,10 +22,56 @@ h11 {
     background-color: #C1CDCD;
 }
 
+.containerModal {
+    background-color: #C1CDCD;
+    margin-top: -5px;
+
+}
 .panel-heading {
     text-align: center;
 }
 
 .help-block {
     text-align: right;
+}
+
+#tabelaColaborador {
+    width:90%;
+    margin-left: 68px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+#excluir ,#editar {
+    margin: 3px;
+    width: 18px;
+}
+
+#topo{
+    margin-left: 1040px;
+}
+
+#btn-editar{
+    width: 50px;
+}
+
+#btn-excluir{
+    width: 50px;
+}
+
+#codModal {
+    margin-left: 3px;
+    position: initial;
+}
+
+.form-row {
+    margin-left: 5px;
+}
+
+#inputTextDiv {
+    margin-left: 76%;
+    color: #ff0000;
+}
+#modal{
+    margin-top: 3px;
 }

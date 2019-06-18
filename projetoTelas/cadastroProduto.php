@@ -10,10 +10,8 @@ $ps = new ProdutoService();
         <meta charset="utf-8">
         <title>Produto</title>
 
-
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/estilo-produto.css">
-
 
     </head>
     <body >
@@ -153,7 +151,6 @@ $ps = new ProdutoService();
                                 <label for="Cadastrar"></label>
                                 <button id="Cadastrar" name="Cadastrar" class="btn btn-success" type="submit">Cadastrar</button>
 
-
                                 <button id="limpar" name="Limpar" class="btn btn-warning" onclick="limpa_formulario()" type="reset">Limpar</button>
 				<div class="input-group mb-3">
 				  <div id="inputTextDiv" class="input-group-prepend">
@@ -162,7 +159,7 @@ $ps = new ProdutoService();
                                     <input type="text" id="inputText" class="form-control" salt="lista-clientes" onkeyup="buscaTable()" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Digite..." />
 
 				</div>
-                                
+
                             </div>
                         </div></div>
                 </fieldset>
@@ -196,17 +193,17 @@ $ps = new ProdutoService();
 
                 <tbody id="tbody">
                     <?php foreach ($ps->populaTabela() as $key) { ?>
-                        <tr>    
-                            <th scope="row"><?php echo $key['idproduto']; ?></th> 
+                        <tr>
+                            <th scope="row"><?php echo $key['idproduto']; ?></th>
                             <td><?php echo $key['descricao']; ?></td>
                             <td><?php echo $key['numeracao']; ?></td>
-                            <td><?php echo $key['genero']; ?></td> 
+                            <td><?php echo $key['genero']; ?></td>
                             <td><?php echo $key['cor']; ?></td>
                             <td><?php echo $key['marca']; ?></td>
                             <td><?php echo $key['valorUnitario']; ?></td>
                             <td><?php echo $key['saldoProduto']; ?></td>
                             <td><?php echo $key['datacadastro']; ?></td>
-                            <td> 
+                            <td>
                                 <button type="button" onclick="carregaModal('<?php echo $key['descricao']; ?>',
                                                                              <?php echo $key['numeracao']; ?>,
                                                                             '<?php echo $key['genero']; ?>',
@@ -214,14 +211,14 @@ $ps = new ProdutoService();
                                                                             '<?php echo $key['marca']; ?>',
                                                                              <?php echo $key['valorUnitario']; ?>,
                                                                              <?php echo $key['saldoProduto']; ?>,
-                                                                             <?php echo $key['idproduto']; ?>)" 
+                                                                             <?php echo $key['idproduto']; ?>)"
                                         data-target=".bd-example-modal-lg" data-toggle="modal" id="btn-editar" class="btn btn-primary"  >
-                                    <img id="editar" src="img/icons8-editar-26.png"> 
+                                    <img id="editar" src="img/icons8-editar-26.png">
                                 </button>
                                 <button type="button" id="btn-editar" class="btn btn-primary">
                                     <a href="../Class/produto.controller.php?acao=deletar&id=<?php echo $key['idproduto']; ?>"> <img id="editar" src="img/icons8-excluir-26.png"></a>
                                 </button>
-                            </td> 
+                            </td>
                         </tr>
                     <?php } ?>
                 </tbody>
@@ -243,8 +240,8 @@ $ps = new ProdutoService();
                                     </div>
 
                                     <div id="codModal" class="panel-body">
-                                        <h4>Cód: 
-                                            <label for="cod" id="divCod"/> 
+                                        <h4>Cód:
+                                            <label for="cod" id="divCod"/>
                                         </h4>
 
                                     </div>
@@ -378,7 +375,7 @@ $ps = new ProdutoService();
 
                                 </fieldset>
                             </form>
-                            
+
 
                         </div>
                     </div>
@@ -395,7 +392,7 @@ $ps = new ProdutoService();
         <!--                        MODAL-->
 
         <script src="js/estilo-produto.js"></script>
-        <script src="js/buscaEmTabela.js"
+        <script src="js/buscaEmTabela.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -403,7 +400,5 @@ $ps = new ProdutoService();
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.quicksearch/2.3.1/jquery.quicksearch.js"></script>
         <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
-        
-        </script>
     </body>
 </html>
