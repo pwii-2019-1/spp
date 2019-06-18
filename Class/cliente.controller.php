@@ -23,7 +23,7 @@ $acao = filter_input(INPUT_GET, 'acao') ? filter_input(INPUT_GET, 'acao') : $aca
     header('Location: ../projetoTelas/cadastroCliente.php#topo');
   } else if ($acao == 'editar') {
     $cliente = new Cliente();
-    $cliente->__set('codProd', filter_input(INPUT_GET, 'id'));
+    $cliente->__set('idcliente', filter_input(INPUT_GET, 'idcliente'));
     $cliente->__set('nome', filter_input(INPUT_POST, 'nomeModal'));
     $cliente->__set('cpf', filter_input(INPUT_POST, 'cpfModal'));
     $cliente->__set('rg', filter_input(INPUT_POST, 'rgModal'));
@@ -36,10 +36,11 @@ $acao = filter_input(INPUT_GET, 'acao') ? filter_input(INPUT_GET, 'acao') : $aca
     $cliente->__set('cidade', filter_input(INPUT_POST, 'cidadeModal'));
     $cliente->__set('estado', filter_input(INPUT_POST, 'estadoModal'));
     $cliente->__set('cep', filter_input(INPUT_POST, 'cepModal'));
-    echo $cliente->__get('sexo');
     $cs = new ClienteService();
     $cs->alterarCliente($cliente);
     header('Location: ../projetoTelas/cadastroCliente.php');
+} else if ($acao == 'deletar') {
+    $cs = new ClienteService();
+    $cs->excluirCliente(filter_input(INPUT_GET, 'idcliente'));
+    header('Location: ../projetoTelas/cadastroCliente.php');
 }
-
-?>

@@ -5,7 +5,6 @@ include_once 'conexao.php';
 
 $acao = filter_input(INPUT_GET, 'acao') ? filter_input(INPUT_GET, 'acao') : $acao;
   if ($acao == 'inserir') {
-
     $colaborador = new Colaborador();
     $colaborador->__set('nome', filter_input(INPUT_POST, 'nome'));
     $colaborador->__set('cpf', filter_input(INPUT_POST, 'cpf'));
@@ -21,13 +20,12 @@ $acao = filter_input(INPUT_GET, 'acao') ? filter_input(INPUT_GET, 'acao') : $aca
     $colaborador->__set('cep', filter_input(INPUT_POST, 'cep'));
     $colaborador->__set('perfil', filter_input(INPUT_POST, 'perfil'));
     $colaborador->__set('senha', filter_input(INPUT_POST, 'senha'));
-
     $colaboradorService = new ColaboradorService();
     $colaboradorService->inserirColaborador($colaborador);
     header('Location: ../projeto/cadastroColaborador.php#topo');
   } else if ($acao == 'editar') {
     $colaborador = new Colaborador();
-    $colaborador->__set('codCliente', filter_input(INPUT_GET, 'idcliente'));
+    $colaborador->__set('idcolaborador', filter_input(INPUT_GET, 'idcolaborador'));
     $colaborador->__set('nome', filter_input(INPUT_POST, 'nomeModal'));
     $colaborador->__set('cpf', filter_input(INPUT_POST, 'cpfModal'));
     $colaborador->__set('rg', filter_input(INPUT_POST, 'rgModal'));
@@ -42,10 +40,11 @@ $acao = filter_input(INPUT_GET, 'acao') ? filter_input(INPUT_GET, 'acao') : $aca
     $colaborador->__set('cep', filter_input(INPUT_POST, 'cepModal'));
     $colaborador->__set('perfil', filter_input(INPUT_POST, 'perfilModal'));
     $colaborador->__set('senha', filter_input(INPUT_POST, 'senhaModal'));
-    echo $colaborador->__get('sexo');
     $cos = new ColaboradorService();
-    $cos->alterarProduto($colaborador);
+    $cos->alterarColaborador($colaborador);
     header('Location: ../projetoTelas/cadastroColaborador.php');
-  }
-
-?>
+} else if ($acao == 'deletar') {
+    $cos = new ColaboradorService();
+    $cos->excluirColaborador(filter_input(INPUT_GET, 'idcolaborador'));
+    header('Location: ../projetoTelas/cadastroColaborador.php');
+}

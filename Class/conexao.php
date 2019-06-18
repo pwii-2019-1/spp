@@ -1,6 +1,6 @@
 <?php
     class Conexao {
-        private static $host = "mysql:host=localhost;dbname=mydb";
+        private static $host = "mysql:host=localhost;dbname=spp";
         private static $user = 'root';
         private static $password = '';
 
